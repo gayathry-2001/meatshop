@@ -22,12 +22,15 @@ class Myapp extends StatelessWidget {
       
       
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 25, 98, 171) 
+        ),
         
         // applyElevationOverlayColor: false,
         inputDecorationTheme: const InputDecorationTheme(
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: const Color.fromARGB(255, 25, 98, 171),
+              color:  Color.fromARGB(255, 25, 98, 171),
             )
           ),
           enabledBorder: UnderlineInputBorder(

@@ -6,11 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:meatshopproj/home/carouselindicator.dart';
 import 'package:meatshopproj/home/drawer.dart';
 import 'package:meatshopproj/home/gridviews.dart';
-
-import '../lists.dart';
-// import 'package:meatshopproj/lists.dart';
-
-
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
@@ -36,9 +31,6 @@ class _HomepageState extends State<Homepage> {
    ),
 
       appBar: AppBar(
-        
-        // toolbarHeight: 150,
-        backgroundColor: const Color.fromARGB(255, 25, 98, 171),
         title: CircleAvatar(
           radius: 30,
 
@@ -99,10 +91,7 @@ class _HomepageState extends State<Homepage> {
                   maxHeight: 500,
                   child: Grids()
                 ),
-              ),
-
-        
-        
+              ),            
             ],
               
               

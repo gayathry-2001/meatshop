@@ -24,20 +24,16 @@ class _DrawState extends State<Draw> {
               decoration: BoxDecoration(
                 color: Colors.blue
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 70,bottom: 10),
-                        child: Icon(Icons.person,
-                        ),
-                      ),
-                      Text("welcome to meatshop"),
-                    ],
+                  Padding(
+                    padding: EdgeInsets.only(right: 70,bottom: 10),
+                    child: Icon(Icons.person,
+                    ),
                   ),
+                  Text("welcome to meatshop"),
                 ],
               ),
               ),

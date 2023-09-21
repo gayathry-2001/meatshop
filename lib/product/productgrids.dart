@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/product/product.dart';
+import 'package:meatshopproj/singleproduct/singleproduct.dart';
 
 import '../lists.dart';
 
-class Grids extends StatelessWidget {
-  const Grids({super.key});
+class Productgrids extends StatelessWidget {
+  const Productgrids({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class Grids extends StatelessWidget {
                           onTap: () {
                             Navigator.push(context,
                              MaterialPageRoute(builder: (context){
-                              return const Product();
+                              return const Singleproduct();
                              }));
                           },
                           child: Container(
