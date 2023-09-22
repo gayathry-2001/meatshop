@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:meatshopproj/home/carouselindicator.dart';
 import 'package:meatshopproj/home/drawer.dart';
 import 'package:meatshopproj/home/gridviews.dart';
+
+import 'bottomnavigation.dart';
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
@@ -19,17 +21,33 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      floatingActionButton: Container(
 
-       bottomNavigationBar: AnimatedBottomNavigationBar(
-        gapWidth: 20,
-        icons: const [
-        Icons.home,
-        Icons.category_rounded,
-        Icons.settings_outlined],
-        activeIndex: bottomNavIndex, 
-        onTap: (index) => setState(() => bottomNavIndex = index),
-   ),
+         decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(colors: [Color.fromARGB(255, 35, 180, 232),
+                                Color.fromARGB(255, 207, 188, 241)])
+                              ),
 
+         child: FloatingActionButton(
+          
+          onPressed: (){
+       
+          },
+          
+          splashColor: const Color.fromARGB(255, 245, 240, 240),
+          backgroundColor: Colors.transparent,
+          hoverColor: Colors.white,
+          child: const Icon(Icons.home,color:Colors.white,size: 30,),
+       
+             //params
+          ),
+       ),
+   floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+
+
+       bottomNavigationBar: const AnimBottomnavigation(),
       appBar: AppBar(
         title: CircleAvatar(
           radius: 30,
@@ -102,4 +120,5 @@ class _HomepageState extends State<Homepage> {
     
   }
 }
+
 

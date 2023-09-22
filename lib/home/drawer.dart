@@ -22,7 +22,8 @@ class _DrawState extends State<Draw> {
             children:   [
              const DrawerHeader(          
               decoration: BoxDecoration(
-                color: Colors.blue
+                image: DecorationImage(image: AssetImage("assets/images/drawrbgimg.jpg"),
+                fit: BoxFit.fill)
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -31,9 +32,14 @@ class _DrawState extends State<Draw> {
                   Padding(
                     padding: EdgeInsets.only(right: 70,bottom: 10),
                     child: Icon(Icons.person,
+                    size: 40,
+                    color: Colors.white,
                     ),
                   ),
-                  Text("welcome to meatshop"),
+                  Text("Welcome to meatshop",style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 23
+                  ),),
                 ],
               ),
               ),
