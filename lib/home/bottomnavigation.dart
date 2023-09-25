@@ -1,5 +1,9 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:meatshopproj/home/categories.dart';
+import 'package:meatshopproj/home/homepage.dart';
+import 'package:meatshopproj/home/settings.dart';
 
 class AnimBottomnavigation extends StatefulWidget {
   const AnimBottomnavigation({
@@ -11,32 +15,100 @@ class AnimBottomnavigation extends StatefulWidget {
 }
 
 class _AnimBottomnavigationState extends State<AnimBottomnavigation> {
+  var clr =Colors.white;
+  GlobalKey navkey = GlobalKey();
+
   int indexnum=0;
-  List tabwid = [ 
-                   const Text("Favorite",style: TextStyle(fontSize: 30),),
-                   const Text("Settings",style: TextStyle(fontSize: 30)),];
+  List tabwid = [  const Homepage(),
+                   const Cat(),
+                   const Settings()];
   @override
   Widget build(BuildContext context) {
-    return AnimatedBottomNavigationBar(
-    onTap: ((int index) {
-            setState(() {
-              indexnum = index;
-            });
-            
-          } ) ,
-    iconSize: 30,
+    return Scaffold(
+  //     floatingActionButton: Container(
+
+  //        decoration: const BoxDecoration(
+  //                               shape: BoxShape.circle,
+  //                               gradient: LinearGradient(colors: [Color.fromARGB(255, 35, 180, 232),
+  //                               Color.fromARGB(255, 207, 188, 241)])
+  //                             ),
+
+  //        child: FloatingActionButton(
+          
+  //         onPressed: (){
+  //           Navigator.push(context, 
+  //           MaterialPageRoute(builder: (context){
+  //             return const Homepage();
+  //           }));
+       
+  //         },
+          
+  //         splashColor: const Color.fromARGB(255, 245, 240, 240),
+  //         backgroundColor: Colors.transparent,
+  //         hoverColor: Colors.white,
+  //         child: const Icon(Icons.home,color:Colors.white,size: 30,),
+       
+  //            //params
+  //         ),
+  //      ),
+  //  floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+     bottomNavigationBar:AnimatedBottomNavigationBar(
     
-    // activeColor: Color(),
-     splashColor: const Color.fromARGB(255, 245, 240, 240),
-     icons:const [
-     Icons.category_rounded,
-     Icons.settings_outlined],
-      activeIndex: 0,
-      gapLocation: GapLocation.center,
-      notchSmoothness: NotchSmoothness.verySmoothEdge,
-      leftCornerRadius: 32,
-      rightCornerRadius: 32,
-      );
+     
+      onTap: ((int index) {
+              setState(() {
+                indexnum = index;
+              });
+              
+            } ) ,
+            borderColor: const Color.fromARGB(255, 25, 98, 171) ,
+            backgroundGradient: const LinearGradient(colors:  [  Color.fromARGB(255, 213, 226, 239) 
+            ,Color.fromARGB(255, 216, 229, 239)]),
+      iconSize: 30,
+      inactiveColor: const Color.fromARGB(255, 25, 98, 171) ,
+      activeColor: const Color.fromARGB(255, 244, 130, 54),
+       splashColor: const Color.fromARGB(255, 245, 240, 240),
+       icons:const [
+       Icons.home_rounded,
+       Icons.category_rounded,
+       Icons.settings_outlined],
+        activeIndex: indexnum,
+        gapWidth: 10,
+        gapLocation: GapLocation.values[2],
+        notchSmoothness: NotchSmoothness.verySmoothEdge,
+        leftCornerRadius: 10,
+        rightCornerRadius: 0,
+        
+        ),
+
+    // bottomNavigationBar:  Padding(
+    //   padding: const EdgeInsets.only(left: 10,right: 10,bottom: 40),
+    //   child: CurvedNavigationBar(
+        
+    //     key: navkey,
+    //     items:[
+    //     Icon(Icons.home,size: 35),
+    //     Icon(Icons.category,size: 35),
+    //     Icon(Icons.settings,size: 35),
+    
+    //     ],
+        
+    //     height: 30,
+    //     onTap: (value) {
+    //       setState(() {
+    //         indexnum = value;
+            
+    //       });
+          
+    //     },
+    //     backgroundColor: Color.fromARGB(123, 244, 244, 244),
+    //     buttonBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+    //     animationCurve: Curves.easeInExpo,
+    //     color: const Color.fromARGB(255, 25, 98, 171) 
+    //   ),
+    // ),
+        body: SafeArea(child: tabwid[indexnum]),
+    );
       
   }
 }

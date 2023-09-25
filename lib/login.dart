@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:meatshopproj/home/homepage.dart';
 import 'package:meatshopproj/register.dart';
 
+import 'home/bottomnavigation.dart';
+
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
 
@@ -118,7 +120,7 @@ class _LoginpageState extends State<Loginpage> {
                                     onPressed: () {
                                       Navigator.push(context, 
                                       MaterialPageRoute(builder: (context)=>
-                                      const Homepage()));
+                                      const AnimBottomnavigation()));
                                      
                                     },
                                     child: const Text('Login'),

@@ -19,10 +19,10 @@ class SingleProductgrids extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.push(context,
-                             MaterialPageRoute(builder: (context){
-                              return const Recipes();
-                             }));
+                            // Navigator.push(context,
+                            //  MaterialPageRoute(builder: (context){
+                            //   return const Recipes();
+                            //  }));
                           },
                           child: Container(
                             height: 20,

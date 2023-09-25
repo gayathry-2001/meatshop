@@ -1,13 +1,13 @@
 // import 'dart:developer';
 
 // import 'package:carousel_slider/carousel_slider.dart';
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/home/carouselindicator.dart';
 import 'package:meatshopproj/home/drawer.dart';
 import 'package:meatshopproj/home/gridviews.dart';
 
-import 'bottomnavigation.dart';
+// import 'bottomnavigation.dart';
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
@@ -21,33 +21,6 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      floatingActionButton: Container(
-
-         decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: LinearGradient(colors: [Color.fromARGB(255, 35, 180, 232),
-                                Color.fromARGB(255, 207, 188, 241)])
-                              ),
-
-         child: FloatingActionButton(
-          
-          onPressed: (){
-       
-          },
-          
-          splashColor: const Color.fromARGB(255, 245, 240, 240),
-          backgroundColor: Colors.transparent,
-          hoverColor: Colors.white,
-          child: const Icon(Icons.home,color:Colors.white,size: 30,),
-       
-             //params
-          ),
-       ),
-   floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-
-
-       bottomNavigationBar: const AnimBottomnavigation(),
       appBar: AppBar(
         title: CircleAvatar(
           radius: 30,
@@ -67,8 +40,9 @@ class _HomepageState extends State<Homepage> {
           preferredSize: const Size.fromHeight(60),
           child: Padding(
             padding: const EdgeInsets.only(left: 30,right: 30,bottom: 10),
-            child: SizedBox(
-              height: 40,
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 10),
+              height: 50,
               child: TextField(               
               decoration: InputDecoration(
                 filled: true,
@@ -78,7 +52,7 @@ class _HomepageState extends State<Homepage> {
                 }, icon: const Icon(Icons.search))
               ),
                         
-            ),
+                        ),
             ),
           ),          
          ),

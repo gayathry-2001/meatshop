@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:meatshopproj/home/about.dart';
+import 'package:meatshopproj/home/bottomnavigation.dart';
+import 'package:meatshopproj/home/faq.dart';
+import 'package:meatshopproj/home/homepage.dart';
+import 'package:meatshopproj/login.dart';
+import 'package:meatshopproj/recipes/recipes.dart';
 
 class Draw extends StatefulWidget {
   const Draw({super.key});
@@ -47,16 +53,24 @@ class _DrawState extends State<Draw> {
                 selectedColor:const Color.fromARGB(255, 244, 130, 54),
                 onTap: (){
                   onItemTapped(0);
+                  Navigator.push(context, MaterialPageRoute(builder: 
+                  (context){
+                    return const Loginpage();
+                  }));
 
                 },
                 selected: selectedIndex ==0,
                 leading: const Icon(Icons.login_rounded,),
-                title:const Text("Login"),
+                title:const Text("Logout"),
               ),
               ListTile(
                 selectedColor:const Color.fromARGB(255, 244, 130, 54),
                 onTap: (){
                   onItemTapped(1);
+                   Navigator.push(context, MaterialPageRoute(builder: 
+                  (context){
+                    return const AnimBottomnavigation();
+                  }));
 
                 },
                 selected: selectedIndex ==1,
@@ -65,10 +79,8 @@ class _DrawState extends State<Draw> {
               ),
               ListTile(
                 selectedColor:const Color.fromARGB(255, 244, 130, 54),
-                onTap: (){
-                  
+                onTap: (){                 
                   onItemTapped(2);
-
                 },
                 selected: selectedIndex ==2,               
                 leading:const Icon(Icons.local_library_sharp,),
@@ -90,6 +102,10 @@ class _DrawState extends State<Draw> {
                 selectedColor:const Color.fromARGB(255, 244, 130, 54),
                 onTap: (){
                   onItemTapped(4);
+                   Navigator.push(context, MaterialPageRoute(
+                    builder: (context){
+                   return const Recipes();
+                  }));
 
                 },
                 selected: selectedIndex ==4,
@@ -100,6 +116,12 @@ class _DrawState extends State<Draw> {
                 selectedColor:const Color.fromARGB(255, 244, 130, 54),
                 onTap: (){
                   onItemTapped(5);
+                   Navigator.push(context, MaterialPageRoute(
+                    builder: (context){
+                   return const Faq(
+                    desc: "FAQS",
+                   );
+                  }));
 
                 },
                 selected: selectedIndex ==5,
@@ -111,6 +133,10 @@ class _DrawState extends State<Draw> {
                 selectedColor:const Color.fromARGB(255, 244, 130, 54),
                 onTap: (){
                   onItemTapped(6);
+                   Navigator.push(context, MaterialPageRoute(
+                    builder: (context){
+                   return const About();
+                  }));
 
                 },
                 selected: selectedIndex ==6,
@@ -122,6 +148,12 @@ class _DrawState extends State<Draw> {
                 selectedColor:const Color.fromARGB(255, 244, 130, 54),
                 onTap: (){
                   onItemTapped(7);
+                   Navigator.push(context, MaterialPageRoute(
+                    builder: (context){
+                   return const Faq(
+                   desc: "Contact",
+                   );
+                  }));
 
                 },
                 selected: selectedIndex ==7,
