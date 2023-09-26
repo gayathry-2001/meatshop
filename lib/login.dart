@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:meatshopproj/home/homepage.dart';
+// import 'package:meatshopproj/home/homepage.dart';
 import 'package:meatshopproj/register.dart';
 
 import 'home/bottomnavigation.dart';
@@ -14,9 +14,15 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+   bool passwordVisible=false; 
   final namecontrol = TextEditingController();
   final passcontrol = TextEditingController();
   bool val = false;
+   @override
+    void initState(){
+      super.initState();
+      passwordVisible=true;
+    }    
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -71,9 +77,11 @@ class _LoginpageState extends State<Loginpage> {
                           ),
                         ),
                         TextField(
+                          
+                          obscureText: passwordVisible,
                           controller: passcontrol,
                           cursorColor: const Color.fromARGB(255, 25, 98, 171),
-                          decoration: const InputDecoration(
+                          decoration:  InputDecoration(                     
                             // enabledBorder: UnderlineInputBorder(
                             //   borderSide: BorderSide(color: Color.fromARGB(246, 224, 8, 8))
                             // ),
@@ -81,12 +89,30 @@ class _LoginpageState extends State<Loginpage> {
                             //   borderSide: BorderSide(color:  Color.fromARGB(255, 25, 98, 171),)
                             // ),
                             hintText: "Password", 
-                            suffixIcon: Icon(Icons.remove_red_eye,),
-                            counterText: "forgot password?",
-                            counterStyle: TextStyle(
+                             suffixIcon: IconButton(
+                      icon: Icon(passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      onPressed: () {
+                        setState(
+                          () {
+                            passwordVisible = !passwordVisible;
+                          },
+                        );
+                      },
+                      
+                    ),
+                            // counterText: "forgot password?",
+                            counter: TextButton(onPressed: () {
+                              
+                            },
+                            child:const Text("forgot password?"),),
+                            counterStyle:const TextStyle(
                               color:  Color.fromARGB(255, 25, 98, 171),
                             )                           
                           ),
+                          keyboardType: TextInputType.visiblePassword,
+                          textInputAction: TextInputAction.done,
                         ),
                         Row(
                           children: [

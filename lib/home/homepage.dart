@@ -61,7 +61,7 @@ class _HomepageState extends State<Homepage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            color: const Color.fromARGB(255, 239, 236, 236),
+            color: const Color.fromARGB(155, 239, 236, 236),
             child: const Column(
                 
               children:  [ 
@@ -79,7 +79,7 @@ class _HomepageState extends State<Homepage> {
                     ],
                   ),
                 ),
-               const Padding(
+                Padding(
                   padding:  EdgeInsets.only(left: 20,right: 20,top: 10),
                   child: LimitedBox(
                     maxHeight: 500,

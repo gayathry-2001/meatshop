@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Bottombar extends StatelessWidget {
+class Bottombar extends StatefulWidget {
   const Bottombar({
     super.key,
     required this.iccolor,
@@ -8,6 +8,12 @@ class Bottombar extends StatelessWidget {
 
   final Color iccolor;
 
+  @override
+  State<Bottombar> createState() => _BottombarState();
+}
+
+class _BottombarState extends State<Bottombar> {
+  bool press=true;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,18 +32,30 @@ class Bottombar extends StatelessWidget {
             child:  Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.favorite_sharp,
-                color:iccolor ,
+                IconButton(onPressed: (){
+                  setState(() {
+                    press=!press;
+                  });
+                }, icon: Icon(Icons.favorite_sharp,
+                color: press == true? const Color.fromARGB(255, 252, 251, 251) : const Color.fromARGB(255, 250, 1, 1),
                 shadows: const [Shadow(
                   color: Colors.red,
                   blurRadius: 10
-                )]),
+                )]),),
                 
-                const Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Text("Save",style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),),
+                
+                  Padding(
+                  padding: const EdgeInsets.only(left: 0),
+                  child:  InkWell(
+                    onTap: () {
+                      setState(() {
+                        press =!press;
+                      });
+                    },
+                    child: const Text("Save",style: TextStyle(
+                      fontWeight: FontWeight.bold
+                    ),),
+                  ),
                 )
               ],
             ), 

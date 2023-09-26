@@ -8,11 +8,20 @@ class Registerpage extends StatefulWidget {
 }
 
 class _RegisterpageState extends State<Registerpage> {
+  bool passwordVisible1=false; 
+  bool passwordVisible2=false;
   final fnamecontrol = TextEditingController();
   final lnamecontrol = TextEditingController();
   final mailcontrol = TextEditingController();
   final mobcontrol = TextEditingController();
   final pswdcontrol = TextEditingController();
+  final pswdcontrol1 = TextEditingController();
+  @override
+  void initState(){
+    super.initState();
+    passwordVisible1=true;
+    passwordVisible2=true;
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -69,20 +78,31 @@ class _RegisterpageState extends State<Registerpage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20,right: 20),
                       child: TextField(
+                        obscureText: passwordVisible1,
                         controller: pswdcontrol,
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                         hintText: "Password", 
-                        suffixIcon: Icon(Icons.remove_red_eye_rounded)                          
+                        suffixIcon: IconButton(onPressed: (){
+                         setState(() {
+                           passwordVisible1 = !passwordVisible1;
+                         });
+                        },
+                         icon: Icon(passwordVisible1 ? Icons.visibility:Icons.visibility_off))                          
                         ),
                         ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20,right: 20),
                       child: TextField(
-                        controller: pswdcontrol,
-                        decoration: const InputDecoration(
+                        obscureText: passwordVisible2,
+                        controller: pswdcontrol1,
+                        decoration:  InputDecoration(
                         hintText: "Confirm password",   
-                        suffixIcon: Icon(Icons.remove_red_eye_rounded)                         
+                        suffixIcon: IconButton(onPressed: (){
+                        setState(() {
+                          passwordVisible2 = !passwordVisible2;
+                        });
+                        }, icon: Icon(passwordVisible2? Icons.visibility : Icons.visibility_off))                       
                         ),
                         ),
                     ),
