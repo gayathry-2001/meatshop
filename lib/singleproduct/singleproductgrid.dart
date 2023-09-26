@@ -25,12 +25,22 @@ class SingleProductgrids extends StatelessWidget {
                             //  }));
                           },
                           child: Container(
+                            color: Colors.white,
                             height: 20,
                             width: 20,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: AssetImage(
-                                gridimg[index]
-                              ),fit: BoxFit.fill)
+                            // decoration: BoxDecoration(
+                            //   image: DecorationImage(image: AssetImage(
+                            //     gridimg[index]
+                            //   ),fit: BoxFit.fill)
+                            // ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10,right: 10,left: 10),
+                              child: Column(
+                                children: [
+                                  Image.asset(gridimg[index]),
+                                  const Text("data")
+                                ],
+                              ),
                             ),
                           ),
                         );

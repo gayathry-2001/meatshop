@@ -26,10 +26,14 @@ class _RecipesState extends State<Recipes> {
           icon: const Icon(Icons.favorite_sharp))
         ],
       ),
-      body: const SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-          child: Recipesgrid(),
+      body:  SafeArea(
+        child: Container(
+          height: double.infinity,
+          color: const Color.fromARGB(255, 239, 236, 236),
+          child: const Padding(
+            padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+            child: Recipesgrid(),
+          ),
         )),
     );
   }

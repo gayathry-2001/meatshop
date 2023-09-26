@@ -61,9 +61,9 @@ class _AnimBottomnavigationState extends State<AnimBottomnavigation> {
               });
               
             } ) ,
-            borderColor: const Color.fromARGB(255, 25, 98, 171) ,
-            backgroundGradient: const LinearGradient(colors:  [  Color.fromARGB(255, 213, 226, 239) 
-            ,Color.fromARGB(255, 216, 229, 239)]),
+            // borderColor: const Color.fromARGB(255, 25, 98, 171) ,
+            // backgroundGradient: const LinearGradient(colors:  [  Color.fromARGB(255, 213, 226, 239) 
+            // ,Color.fromARGB(255, 216, 229, 239)]),
       iconSize: 30,
       inactiveColor: const Color.fromARGB(255, 25, 98, 171) ,
       activeColor: const Color.fromARGB(255, 244, 130, 54),

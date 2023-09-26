@@ -39,7 +39,7 @@ class _SingleproductState extends State<Singleproduct> {
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
-                  color: const Color.fromARGB(155, 244, 236, 236),
+                  color: const Color.fromARGB(255, 239, 236, 236),
                   child: Column(
                     children: [
                       Container(

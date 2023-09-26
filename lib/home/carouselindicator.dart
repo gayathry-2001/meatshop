@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../lists.dart';
 
 class CarouselWithIndicatorDemo extends StatefulWidget {
+  const CarouselWithIndicatorDemo({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _CarouselWithIndicatorState();
@@ -41,7 +43,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             //    }),
             
             options:  CarouselOptions(  
-  
+                    
                     pageSnapping: true,        
                     height: 180.0,
                     enlargeCenterPage: true,
@@ -66,10 +68,11 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                   height: 12.0,
                   margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                   decoration: BoxDecoration(
+                      // boxShadow: [BoxShadow(color: Colors.black,spreadRadius: 20,)],
                       shape: BoxShape.circle,
                       color: (Theme.of(context).brightness == Brightness.dark
                               ? const Color.fromARGB(255, 191, 65, 65)
-                              : Color.fromARGB(255, 30, 31, 30))
+                              :  const Color.fromARGB(255, 25, 98, 171)) 
                           .withOpacity(current == entry.key ? 0.9 : 0.4)),
                 ),
               );
@@ -97,8 +100,8 @@ final List<Widget> imageSliders = carouselimg
                   decoration:const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color.fromARGB(200, 0, 0, 0),
-                        Color.fromARGB(0, 229, 15, 15)
+                        Color.fromARGB(199, 205, 20, 20),
+                        Color.fromARGB(245, 152, 18, 18)
                       ],
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,

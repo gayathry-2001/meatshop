@@ -31,10 +31,11 @@ class _ProductState extends State<Product> {
           
         ],
       ),
-      body:const SafeArea(
-        child:LimitedBox
-      ( maxHeight: double.infinity,
-        child: Padding(
+      body: SafeArea(
+        child:Container
+      ( color: const Color.fromARGB(255, 239, 236, 236),
+        height: double.infinity,
+        child:const Padding(
           padding: EdgeInsets.only(left: 20,right: 20,top: 30),
           child: Productgrids())) )
     );

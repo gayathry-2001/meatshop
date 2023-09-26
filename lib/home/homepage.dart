@@ -60,33 +60,36 @@ class _HomepageState extends State<Homepage> {
       drawer:  const Draw(),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-              
-            children:  [ 
-              CarouselWithIndicatorDemo(),
-              const Padding(
-                padding:  EdgeInsets.only(left: 20,right: 20),
-                child:  Row(
-                  children: [
-                    Text("Categories"),
-                    Spacer(),
-                    Text("View all",
-                    style: TextStyle(
-                      color: Colors.blue
-                    ),)
-                  ],
+          child: Container(
+            color: const Color.fromARGB(255, 239, 236, 236),
+            child: const Column(
+                
+              children:  [ 
+                CarouselWithIndicatorDemo(),
+                 Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20),
+                  child:  Row(
+                    children: [
+                      Text("Categories"),
+                      Spacer(),
+                      Text("View all",
+                      style: TextStyle(
+                        color: Colors.blue
+                      ),)
+                    ],
+                  ),
                 ),
-              ),
-             const Padding(
-                padding:  EdgeInsets.only(left: 20,right: 20,top: 10),
-                child: LimitedBox(
-                  maxHeight: 500,
-                  child: Grids()
-                ),
-              ),            
-            ],
-              
-              
+               const Padding(
+                  padding:  EdgeInsets.only(left: 20,right: 20,top: 10),
+                  child: LimitedBox(
+                    maxHeight: 500,
+                    child: Grids()
+                  ),
+                ),            
+              ],
+                
+                
+            ),
           ),
         ),
       ),
