@@ -22,10 +22,52 @@ class _SingleRecipesState extends State<SingleRecipes> {
               height: 200,
               width: double.infinity,
               decoration: const BoxDecoration(
-                color: Colors.red,
-                image: DecorationImage(image: AssetImage(" assets/images/gridfish.jpg"),
-                fit: BoxFit.fill)
+                // color: Colors.red,
+                // image: DecorationImage(image: AssetImage(" assets/images/gridfish.jpg"),
+                // fit: BoxFit.fill)
               ),
+              child: Image.asset("assets/images/images.jpg",fit: BoxFit.fill,),
+              
+            ),
+            Stack(
+              children: [
+                Container(
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    boxShadow: [BoxShadow(color: Color.fromARGB(53, 60, 58, 58),
+                   ),]
+                    
+                  ),
+                child: const Padding(
+                  padding:  EdgeInsets.only(left: 30,top: 10),
+                  child:  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("data",style: TextStyle(color: Colors.white,
+                      fontSize: 25),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Row(
+                          
+                          children: [
+                             Text("data",style: TextStyle(color: Colors.white,
+                             fontSize: 18),),
+                             
+                              Padding(
+                                padding: EdgeInsets.only(left: 30),
+                                child: Text("data",style: TextStyle(color: Colors.white,
+                                fontSize: 18),),
+                              ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                              ),
+              ],
             ),
              
                     const Padding(

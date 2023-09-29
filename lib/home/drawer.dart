@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/home/about.dart';
 import 'package:meatshopproj/home/bottomnavigation.dart';
+import 'package:meatshopproj/home/editprof.dart';
 import 'package:meatshopproj/home/faq.dart';
 import 'package:meatshopproj/home/homepage.dart';
 import 'package:meatshopproj/login.dart';
@@ -160,6 +161,21 @@ class _DrawState extends State<Draw> {
                 leading:const Icon(Icons.call_rounded,),
                 // focusColor: Colors.orange,
                 title:const Text("Contact"),
+              ),
+              ListTile(
+                selectedColor:const Color.fromARGB(255, 244, 130, 54),
+                onTap: (){
+                  onItemTapped(8);
+                   Navigator.push(context, MaterialPageRoute(
+                    builder: (context){
+                   return const Editprof();
+                  }));
+
+                },
+                selected: selectedIndex ==8,
+                leading:const Icon(Icons.edit,),
+                // focusColor: Colors.orange,
+                title:const Text("Edit profile"),
               ),
             ],
             

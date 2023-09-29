@@ -10,6 +10,7 @@ class SingleProductgrids extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  GridView.builder(
+                    physics: const ScrollPhysics(),
                     itemCount: carouselimg.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       

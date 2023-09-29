@@ -11,6 +11,8 @@ class Singleproduct extends StatefulWidget {
 }
 
 class _SingleproductState extends State<Singleproduct> {
+  var kgcount = 0;
+  var gmcount = 0;
   var dropdownvalue = "Select";
   var cuts = [   
      
@@ -136,15 +138,21 @@ class _SingleproductState extends State<Singleproduct> {
                               Row(
                                 children: [
                                   IconButton(onPressed: (){
-                      
+                                   setState(() {
+                                    if(kgcount!=0) {
+                                      kgcount--;
+                                    }
+                                    });
                                   }, icon: const Icon(Icons.remove_circle_outline,
                                   size: 35,),
                                   ),
-                                  const Text("2",style: TextStyle(
+                                   Text("$kgcount",style: const TextStyle(
                                 fontSize: 20
                               ),),
                                    IconButton(onPressed: (){
-                      
+                                    setState(() {
+                                      kgcount++ ;
+                                    });
                               }, icon: const Icon(Icons.add_circle_outline,
                               size: 35,))
                                 ],
@@ -163,15 +171,20 @@ class _SingleproductState extends State<Singleproduct> {
                               Row(
                                 children: [
                                   IconButton(onPressed: (){
-                      
+                                    setState(() {
+                                      if(gmcount!=0){
+                                       gmcount = gmcount-1;}
+                                    });
                                   }, icon: const Icon(Icons.remove_circle_outline,
                                   size: 35,),
                                   ),
-                                  const Text("100",style: TextStyle(
+                                   Text("$gmcount",style:const TextStyle(
                                 fontSize: 20
                               ),),
                                    IconButton(onPressed: (){
-                      
+                                    setState(() {
+                                      gmcount=gmcount+1;
+                                    });
                               }, icon: const Icon(Icons.add_circle_outline,
                               size: 35,
                               ))

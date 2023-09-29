@@ -1,3 +1,4 @@
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
      
         Column(children: [
           CarouselSlider(
+            
             items: imageSliders,
             // itemCount: carouselimg.length,
             carouselController: _controller,
@@ -78,6 +80,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               );
             }).toList(),
           ),
+          
         ]);
       
     

@@ -59,10 +59,11 @@ class _HomepageState extends State<Homepage> {
       ),
       drawer:  const Draw(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            color: const Color.fromARGB(155, 239, 236, 236),
-            child: const Column(
+        child: Container(
+          color: const Color.fromARGB(155, 239, 236, 236),
+          child:const SingleChildScrollView(
+            // physics: ScrollPhysics(),
+            child: Column(
                 
               children:  [ 
                 CarouselWithIndicatorDemo(),
@@ -82,7 +83,7 @@ class _HomepageState extends State<Homepage> {
                 Padding(
                   padding:  EdgeInsets.only(left: 20,right: 20,top: 10),
                   child: LimitedBox(
-                    maxHeight: 500,
+                    maxHeight: 450,
                     child: Grids()
                   ),
                 ),            

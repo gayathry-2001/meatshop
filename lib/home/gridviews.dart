@@ -9,6 +9,7 @@ class Grids extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  GridView.builder(
+                     physics: ScrollPhysics(),
                     itemCount: carouselimg.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       
