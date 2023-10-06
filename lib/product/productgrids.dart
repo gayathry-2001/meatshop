@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meatshopproj/product/product.dart';
+// import 'package:meatshopproj/product/product.dart';
 import 'package:meatshopproj/singleproduct/singleproduct.dart';
 
 import '../lists.dart';

@@ -1,9 +1,11 @@
 
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-// import 'package:meatshopproj/home/homepage.dart';
+import 'package:meatshopproj/home/homepage.dart';
 import 'package:meatshopproj/register.dart';
-
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
+import 'api.dart';
 import 'home/bottomnavigation.dart';
 
 class Loginpage extends StatefulWidget {
@@ -15,7 +17,7 @@ class Loginpage extends StatefulWidget {
 
 class _LoginpageState extends State<Loginpage> {
    bool passwordVisible=false; 
-  final namecontrol = TextEditingController();
+  final mailcontrol = TextEditingController();
   final passcontrol = TextEditingController();
   bool val = false;
    @override
@@ -70,10 +72,10 @@ class _LoginpageState extends State<Loginpage> {
                     child: ListView(
                       children: [
                         TextField(
-                          controller: namecontrol,
+                          controller: mailcontrol,
                           cursorColor: const Color.fromARGB(255, 25, 98, 171),
                           decoration: const InputDecoration(
-                            hintText: "Name"
+                            hintText: "E mail"
                           ),
                         ),
                         TextField(
@@ -81,13 +83,7 @@ class _LoginpageState extends State<Loginpage> {
                           obscureText: passwordVisible,
                           controller: passcontrol,
                           cursorColor: const Color.fromARGB(255, 25, 98, 171),
-                          decoration:  InputDecoration(                     
-                            // enabledBorder: UnderlineInputBorder(
-                            //   borderSide: BorderSide(color: Color.fromARGB(246, 224, 8, 8))
-                            // ),
-                            // focusedBorder: UnderlineInputBorder(
-                            //   borderSide: BorderSide(color:  Color.fromARGB(255, 25, 98, 171),)
-                            // ),
+                          decoration:  InputDecoration(                                                 
                             hintText: "Password", 
                              suffixIcon: IconButton(
                       icon: Icon(passwordVisible
@@ -143,11 +139,14 @@ class _LoginpageState extends State<Loginpage> {
                                           borderRadius: BorderRadius.circular(30.0)),
                                      
                                     ),
-                                    onPressed: () {
-                                      Navigator.push(context, 
-                                      MaterialPageRoute(builder: (context)=>
-                                      const AnimBottomnavigation()));
+                                    onPressed: () async{
                                      
+                                     loginUser();
+                                     next();
+
+                                      // Navigator.push(context, 
+                                      // MaterialPageRoute(builder: (context)=>
+                                      // const AnimBottomnavigation()));
                                     },
                                     child: const Text('Login'),
                                   ),
@@ -195,16 +194,9 @@ class _LoginpageState extends State<Loginpage> {
 
                    },
                     child: const Text("Guest login",
-                    style: TextStyle(color:  Color.fromARGB(255, 25, 98, 171),),),)
-                            
+                    style: TextStyle(color:  Color.fromARGB(255, 25, 98, 171),),),)                            
                           ],
                         ),
-                        
-
- 
-                        
-                       
-
                       ],
                     ),
                   ),
@@ -219,4 +211,79 @@ class _LoginpageState extends State<Loginpage> {
         ),
     );
   }
+  void loginUser() async{
+    final mail = mailcontrol.text;
+    final passwrd = passcontrol.text;
+    const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
+    if(mail.isEmpty){
+    showErrormessage("Enter Email");
+    }
+    else if(passwrd.isEmpty){
+    showErrormessage("Enter Password");
+    }
+    else{
+     final formdata = FormData.fromMap({
+     'email':mail,
+     'password':passwrd,
+     'key': key
+     });
+     final result = await Api().loginUserApi(formdata);
+
+      if (result != null) {
+        if (result.status == "success") {
+        
+          showSuccessmessage(result.message!);
+          // Navigator.push(context, MaterialPageRoute(builder: (context){
+          //   return const  HomeScreen();
+          // }));
+        } else {
+         
+          showErrormessage(result.message!);
+        }
+      }
+       
+     
+    }
+  }
+  
+  void showErrormessage(String message) {
+    MotionToast.error(
+      title: const Text(
+        'Error',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
+
+  }
+  
+  void showSuccessmessage(String message) {
+     MotionToast.success(
+      title: const Text(
+        'Success',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
+  }
+  Future <void> next() async{
+   return Future.delayed(Duration(seconds: 5),(){
+    Navigator.push(context, MaterialPageRoute(builder: ((context) => AnimBottomnavigation())));
+   });
+  }
+
 }

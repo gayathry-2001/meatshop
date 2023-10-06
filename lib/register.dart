@@ -1,4 +1,11 @@
+
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
+
+import 'api.dart';
 
 class Registerpage extends StatefulWidget {
   const Registerpage({super.key});
@@ -117,10 +124,11 @@ class _RegisterpageState extends State<Registerpage> {
                 height: 60,
                 width: MediaQuery.of(context).size.width,
                child: ElevatedButton(onPressed: (){
-               const snack =   SnackBar(
-                  content:  Text("Regsitered Successfully")
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snack);
+              //  const snack =   SnackBar(
+              //     content:  Text("Regsitered Successfully")
+              //     );
+              //     ScaffoldMessenger.of(context).showSnackBar(snack);
+              registerUser();
                 
                 }, 
                 style: ElevatedButton.styleFrom(
@@ -130,14 +138,101 @@ class _RegisterpageState extends State<Registerpage> {
                 )
                )
              ],
-           ),
-            
-            
-      
-      
-      
-         
+           ),      
       )),
     );
   }
+   void registerUser() async{
+    final fname = fnamecontrol.text;
+    final lname = lnamecontrol.text;
+    final mail = mailcontrol.text;
+    final mob = mobcontrol.text;
+    final pswd = pswdcontrol.text;
+    const type = 0;
+    const ref = 0;
+    const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
+
+    if(fname.isEmpty){
+     showErrormessage("Enter first name");
+    }
+    else if(lname.isEmpty){
+     showErrormessage("Enter last name");
+    }
+    else if(mail.isEmpty){
+     showErrormessage("Enter mail-id");
+    }
+    else if(mob.isEmpty){
+     showErrormessage("Enter Mobile");
+    }
+    else if(pswd.isEmpty){
+     showErrormessage("Enter password");
+    }
+    else {
+      final formData = FormData.fromMap(
+        {
+          'firstname': fname,
+          'lastname' : lname,
+          'email':mail,
+          'telephone':mob,
+          'password':pswd,
+          'type':type,
+          'referal_code': ref,
+          'key':key
+        }
+      );
+      final result = await Api().registerUserApi(formData);
+      if(result != null){
+
+        
+        if(result.status == "success"){
+          showSuccessmessage(result.message);
+        }
+       else{
+            showErrormessage(result.message);
+       }
+         
+        
+      }
+
+      }
+      
+    }
+
+
+   
+   void showErrormessage(msg){
+    MotionToast.error(
+      title: const Text(
+        'Error',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text(msg),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: true,
+    ).show(context);
+
+   }
+
+   void showSuccessmessage(msg){
+    MotionToast.success(
+      title: const Text(
+        'Sucess',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text(msg),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: true,
+    ).show(context);
+
+   }
 }
