@@ -142,8 +142,8 @@ class _LoginpageState extends State<Loginpage> {
                                     onPressed: () async{
                                      
                                      loginUser();
-                                     next();
-
+                                 
+    
                                       // Navigator.push(context, 
                                       // MaterialPageRoute(builder: (context)=>
                                       // const AnimBottomnavigation()));
@@ -233,6 +233,7 @@ class _LoginpageState extends State<Loginpage> {
         if (result.status == "success") {
         
           showSuccessmessage(result.message!);
+          next();
           // Navigator.push(context, MaterialPageRoute(builder: (context){
           //   return const  HomeScreen();
           // }));
@@ -277,7 +278,7 @@ class _LoginpageState extends State<Loginpage> {
       barrierColor: Colors.black.withOpacity(0.3),
       width: 300,
       height: 80,
-      dismissable: false,
+      dismissable: true,
     ).show(context);
   }
   Future <void> next() async{

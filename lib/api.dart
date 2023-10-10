@@ -1,10 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:meatshopproj/main.dart';
+import 'package:meatshopproj/modals/homemodal.dart';
 import 'package:meatshopproj/modals/loginmodal.dart';
 import 'package:meatshopproj/modals/registermodal.dart';
 import 'package:meatshopproj/url/url.dart';
 
 class Api{
-  static Api instance = Api();
+  
+  Api._internal();
+  static Api instance = Api._internal();
   factory(){
     return instance;
   }
@@ -45,5 +50,19 @@ Future <Loginmodal?> loginUserApi (FormData formData) async{
     print(e);
   }
 }
+
+Future <Homemodal?> homeUserApi (FormData formData) async{
+  try {
+    final result = await dio.post(url.homeEnd,data: formData);
+    return Homemodal.fromJson(result.data);
+  }
+  on DioException catch(e){
+    print(e);
+  }
+}
+
+
+
+
 
 }
