@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:meatshopproj/modals/productmodal.dart';
+import 'package:meatshopproj/product/product.dart';
 // import 'package:meatshopproj/product/product.dart';
 import 'package:meatshopproj/singleproduct/singleproduct.dart';
 
-import '../lists.dart';
+// import '../lists.dart';
+
 
 class Productgrids extends StatelessWidget {
   const Productgrids({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
-    return  GridView.builder(
-                    itemCount: carouselimg.length,
+    return  ValueListenableBuilder(
+      valueListenable: productNotifier, 
+      builder: (context, List<Productdata> newproduct, child) {
+        return GridView.builder(
+                    itemCount: newproduct.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       
                       crossAxisCount: 2,
                       crossAxisSpacing: 2,
                       mainAxisSpacing: 2), 
                       itemBuilder: (context, index) {
+                        final product = productNotifier.value[index];
                         return InkWell(
                           onTap: () {
                             Navigator.push(context,
@@ -25,7 +32,7 @@ class Productgrids extends StatelessWidget {
                              }));
                           },
                           child: Container(
-                            height: 20,
+                            height: 50,
                             width: 20,
                             // decoration: BoxDecoration(
                             //   image: DecorationImage(image: AssetImage(
@@ -37,7 +44,7 @@ class Productgrids extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
                               child: Column(
                                 children: [
-                                  Image.asset(gridimg[index]),
+                                  Image.network(product.image.toString(),fit: BoxFit.contain,),
                                   const Text("data")
                                 ],
                               ),
@@ -45,5 +52,7 @@ class Productgrids extends StatelessWidget {
                           ),
                         );
                       }, );
+      },);
+   
   }
 }

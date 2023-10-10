@@ -20,7 +20,10 @@ class Homepage extends StatefulWidget {
   @override
   State<Homepage> createState() => _HomepageState();
 }
-ValueNotifier<List<Categories>> productNotifier = ValueNotifier([]);
+ValueNotifier<List<Categories>> categoryNotifier = ValueNotifier([]);
+ValueNotifier<List<Banners>> bannerNotifier = ValueNotifier([]);
+
+
 class _HomepageState extends State<Homepage> {
 
   
@@ -126,9 +129,11 @@ class _HomepageState extends State<Homepage> {
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
-            productNotifier.value.addAll(result.data!.categories!);
-            showSuccessmessage();
-             print("**********$productNotifier");
+              // categoryNotifier.value.clear();
+            categoryNotifier.value.addAll(result.data!.categories!);
+               
+            // showSuccessmessage();
+             print("**********$categoryNotifier");
           }
           
         
@@ -136,7 +141,7 @@ class _HomepageState extends State<Homepage> {
           
         } else {
          
-          showErrormessage();
+            categoryNotifier.value.clear();
         }
       }
        
@@ -157,7 +162,7 @@ class _HomepageState extends State<Homepage> {
       barrierColor: Colors.black.withOpacity(0.3),
       width: 300,
       height: 80,
-      dismissable: false,
+      dismissable: true,
     ).show(context);
 
   }

@@ -260,7 +260,7 @@ class _LoginpageState extends State<Loginpage> {
       barrierColor: Colors.black.withOpacity(0.3),
       width: 300,
       height: 80,
-      dismissable: false,
+      dismissable: true,
     ).show(context);
 
   }

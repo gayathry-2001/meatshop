@@ -3,9 +3,12 @@ import 'package:meatshopproj/home/about.dart';
 import 'package:meatshopproj/home/bottomnavigation.dart';
 import 'package:meatshopproj/home/editprof.dart';
 import 'package:meatshopproj/home/faq.dart';
+import 'package:meatshopproj/home/homepage.dart';
 // import 'package:meatshopproj/home/homepage.dart';
 import 'package:meatshopproj/login.dart';
 import 'package:meatshopproj/recipes/recipes.dart';
+
+import '../modals/homemodal.dart';
 
 class Draw extends StatefulWidget {
   const Draw({super.key});
@@ -15,6 +18,7 @@ class Draw extends StatefulWidget {
 }
 
 class _DrawState extends State<Draw> {
+   
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -23,13 +27,21 @@ class _DrawState extends State<Draw> {
       selectedIndex = index;
     });
   }
-    return  
-       Drawer(
+    return  ValueListenableBuilder(
+      valueListenable: bannerNotifier,
+       builder:(context, List <Banners> newproduct, child) {
+     
+
+        return 
+         Drawer(
           child: ListView(
+           
             children:   [
-             const DrawerHeader(          
+             const DrawerHeader(  
+                     
               decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/images/drawrbgimg.jpg"),
+                image: DecorationImage(
+                image: AssetImage("assets/images/drawrbgimg.jpg"),
                 fit: BoxFit.fill)
               ),
               child: Column(
@@ -184,5 +196,7 @@ class _DrawState extends State<Draw> {
 
         ); 
     
+       } );
+      
   }
 }

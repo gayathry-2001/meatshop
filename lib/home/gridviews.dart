@@ -11,25 +11,25 @@ class Grids extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  ValueListenableBuilder(
-      valueListenable: productNotifier,
+      valueListenable: categoryNotifier,
        builder: (context, List<Categories> newproduct, child) {
          return 
 
          GridView.builder(
-                     physics: ScrollPhysics(),
-                    itemCount: carouselimg.length,
+                     physics:const ScrollPhysics(),
+                    itemCount: newproduct.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       
                       crossAxisCount: 2,
                       crossAxisSpacing: 2,
                       mainAxisSpacing: 2), 
                       itemBuilder: (context, index) {
-                         final product = productNotifier.value[index];
+                         final product = categoryNotifier.value[index];
                         return InkWell(
                           onTap: () {
                             Navigator.push(context,
                              MaterialPageRoute(builder: (context){
-                              return const Product();
+                              return  Product();
                              }));
                           },
                           child: Container(
