@@ -7,6 +7,8 @@ import 'package:meatshopproj/modals/productmodal.dart';
 import 'package:meatshopproj/modals/registermodal.dart';
 import 'package:meatshopproj/url/url.dart';
 
+import 'modals/singleproductmodal.dart';
+
 class Api{
   
   Api._internal();
@@ -71,6 +73,16 @@ Future <Productmodal?> productUserApi (FormData formData) async{
     print(e);
   }
 
+}
+
+Future <Singleproductmodal?> singleproductUserApi (FormData formdata) async{
+  try{
+    final result = await dio.post(url.singleproEnd,data: formdata);
+    return Singleproductmodal.fromJson(result.data);
+  }
+  on DioException catch(e){
+    print(e);
+  }
 }
 
 

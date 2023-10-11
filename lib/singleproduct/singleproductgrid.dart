@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meatshopproj/recipes/recipes.dart';
-import 'package:meatshopproj/singleproduct/singleproduct.dart';
+// import 'package:meatshopproj/recipes/recipes.dart';
+// import 'package:meatshopproj/singleproduct/singleproduct.dart';
 
 import '../lists.dart';
 

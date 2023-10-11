@@ -19,47 +19,50 @@ class _BottombarState extends State<Bottombar> {
     return Row(
       children: [
         Expanded(
-          child: Container(
-            height: 55,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black
-              ),
-              color: const Color.fromARGB(255, 250, 250, 247),
-            ),
+          child: InkWell(
+            onTap: 
+               () {
+                        setState(() {
+                          press =!press;
+                        });
+                      },
             
-          
-            child:  Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(onPressed: (){
-                  setState(() {
-                    press=!press;
-                  });
-                }, icon: Icon(Icons.favorite_sharp,
-                color: press == true? const Color.fromARGB(255, 252, 251, 251) : const Color.fromARGB(255, 250, 1, 1),
-                shadows: const [Shadow(
-                  color: Colors.red,
-                  blurRadius: 10
-                )]),),
-                
-                
-                  Padding(
-                  padding: const EdgeInsets.only(left: 0),
-                  child:  InkWell(
-                    onTap: () {
-                      setState(() {
-                        press =!press;
-                      });
-                    },
-                    child: const Text("Save",style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),),
-                  ),
-                )
-              ],
-            ), 
-            ),
+            child: Container(
+              height: 55,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black
+                ),
+                color: Color.fromARGB(255, 246, 246, 244),
+              ),
+              
+            
+              child:  Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(onPressed: (){
+                    // setState(() {
+                    //   press=!press;
+                    // });
+                  }, icon: Icon(Icons.favorite_sharp,
+                  color: press == true? const Color.fromARGB(255, 252, 251, 251) : const Color.fromARGB(255, 250, 1, 1),
+                  shadows: const [Shadow(
+                    color: Colors.red,
+                    blurRadius: 10
+                  )]),),
+                  
+                  
+                    const Padding(
+                    padding:  EdgeInsets.only(left: 0),                 
+                    child:  Text("Save",style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),),
+                    
+                  )
+                ],
+              ), 
+              ),
+          ),
           ),
         
 

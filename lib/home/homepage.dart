@@ -26,13 +26,19 @@ ValueNotifier<List<Banners>> bannerNotifier = ValueNotifier([]);
 
 class _HomepageState extends State<Homepage> {
 
-  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    homeUser();
+  }
 
   var bottomNavIndex=0;
 
   @override
   Widget build(BuildContext context) {
-     homeUser();
+    
+   
    
     WidgetsBinding.instance.addPostFrameCallback((_) async{
     
@@ -129,8 +135,12 @@ class _HomepageState extends State<Homepage> {
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
-              // categoryNotifier.value.clear();
+
+         
+            categoryNotifier.value.clear();
             categoryNotifier.value.addAll(result.data!.categories!);
+            
+              
                
             // showSuccessmessage();
              print("**********$categoryNotifier");
@@ -141,7 +151,7 @@ class _HomepageState extends State<Homepage> {
           
         } else {
          
-            categoryNotifier.value.clear();
+            // categoryNotifier.value.clear();
         }
       }
        

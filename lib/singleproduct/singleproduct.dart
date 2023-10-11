@@ -1,21 +1,36 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:meatshopproj/modals/singleproductmodal.dart';
 
+import '../api.dart';
 import 'Bottombar.dart';
 import 'singleproductgrid.dart';
 
-class Singleproduct extends StatefulWidget {
+class Singleproduct extends StatefulWidget {  
   const Singleproduct({super.key});
 
   @override
   State<Singleproduct> createState() => _SingleproductState();
 }
+// ValueNotifier<List<Singledata>> singleproNotifier = ValueNotifier([]);
 
 class _SingleproductState extends State<Singleproduct> {
+  
   var kgcount = 0;
   var gmcount = 0;
   var dropdownvalue = "Select";
-  var cuts = [   
-     
+  var Singleproname;
+  var singleproimg ;
+  var singlprodesc;
+  var singleproprice;
+  get kg => kgcount;
+  get gm => gmcount;
+  get pricereq => "$kg.$gm";
+  get t => int.parse(singleproprice);
+  get p => double.parse(pricereq);
+  get total => p * t;
+  
+  var cuts = [    
     'Half',
     'Full',
     'Quarter',
@@ -24,10 +39,11 @@ class _SingleproductState extends State<Singleproduct> {
    var iccolor= const Color.fromARGB(255, 246, 242, 242); 
   @override
   Widget build(BuildContext context) {
+    singleproUser();
     return  Scaffold(
       
       appBar: AppBar(
-        title: const Text("Fish name"),
+        title:  Text(Singleproname),
         actions: [
           IconButton(onPressed: (){
     
@@ -46,9 +62,9 @@ class _SingleproductState extends State<Singleproduct> {
                     children: [
                       Container(
                         height: 230,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           color: Colors.white10,
-                          image: DecorationImage(image: AssetImage("assets/images/fishimg.jpg"),
+                          image: DecorationImage(image: NetworkImage(singleproimg.toString()),
                           fit: BoxFit.fill)
                         ),),
                     
@@ -59,9 +75,9 @@ class _SingleproductState extends State<Singleproduct> {
                     boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
                     blurRadius: 3),  
                     ]),
-                   child:const Padding(
-                     padding:  EdgeInsets.only(top: 10,left: 20,right: 20),
-                     child:  Text("Seer fish/Surmal/Neymeen/Vanjaram/King fish/Seer fish/Surmal/Neymeen/Vanjaram/King fish",
+                   child: Padding(
+                     padding: const EdgeInsets.only(top: 10,left: 20,right: 20),
+                     child:  Text(Singleproname,
                          maxLines: 2,),
                    ),
                  ),
@@ -73,29 +89,32 @@ class _SingleproductState extends State<Singleproduct> {
                     boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
                     blurRadius: 3),  
                     ]),
-                         child:  Row(
-                           children: [
-                              const Text("Choose your cut"),
-                              const Spacer(),
-                              Text(dropdownvalue),
-                                  DropdownButton(
-                                    
-                                    // value: dropdownvalue,
-                                    icon:  const Icon(Icons.keyboard_arrow_down),
-                                    items: cuts.map((String cuts) {
-                                       return DropdownMenuItem(
-                                              value: cuts,
-                                              child: Text(cuts),
-                                                );
-                                         
-                                                }).toList(),
-                                   onChanged: (String? newValue) { 
-                                          setState(() {
-                                            dropdownvalue = newValue!;
-                                                          
-                                          });
-                                        },)  
-                           ],
+                         child:  Padding(
+                           padding: const EdgeInsets.only(left: 20,right: 20),
+                           child: Row(
+                             children: [
+                                const Text("Choose your cut"),
+                                const Spacer(),
+                                Text(dropdownvalue),
+                                    DropdownButton(
+                                      
+                                      // value: dropdownvalue,
+                                      icon:  const Icon(Icons.keyboard_arrow_down),
+                                      items: cuts.map((String cuts) {
+                                         return DropdownMenuItem(
+                                                value: cuts,
+                                                child: Text(cuts),
+                                                  );
+                                           
+                                                  }).toList(),
+                                     onChanged: (String? newValue) { 
+                                            setState(() {
+                                              dropdownvalue = newValue!;
+                                                            
+                                            });
+                                          },)  
+                             ],
+                           ),
                          ),
                        ),
                      const SizedBox(height: 10,),
@@ -107,18 +126,18 @@ class _SingleproductState extends State<Singleproduct> {
                     ]),
                        child: Column(
                          children: [
-                            const Padding(
-                             padding: EdgeInsets.only(left: 20,right: 20,bottom: 20,top: 10),
+                             Padding(
+                             padding: const EdgeInsets.only(left: 20,right: 20,bottom: 20,top: 10),
                              child:  Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Request your quantity"),
+                               const Text("Request your quantity"),
                                 Row(
                                   children: [
                                     Text("whole: 180/500gm"),
-                                    Spacer(),
-                                    Text(" \$360")
+                                    const Spacer(),
+                                    Text("\$ $singleproprice")
                                   ],
                                 ),             
                               ],
@@ -208,12 +227,12 @@ class _SingleproductState extends State<Singleproduct> {
                     blurRadius: 3),  
                     ]),
             
-                        child: const Padding(
-                           padding:  EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10),
+                        child:  Padding(
+                           padding: const EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10),
                           child:  Row(
                            
                             children: [
-                              Column(
+                              const Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -237,25 +256,28 @@ class _SingleproductState extends State<Singleproduct> {
                                  
                                 ],
                               ),
-                              Spacer(),
+                              
+                             const Spacer(),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(bottom: 10),
                                     child: Text("   "),
                                   ),
-                                  Text("580/kg"),
-                                  Text("0.76 kg"),
-                                  Text(".27 kg"),
-                                  Text(".57 kg"),
-                                  Text(".FREE",style: TextStyle(
+                                  
+                                  Text("$singleproprice /kg"),
+                                  Text("$pricereq kg"),
+                                 const Text(".27 kg"),
+                                 const Text(".57 kg"),
+                                 const Text(".FREE",style: TextStyle(
                                     color: Colors.green
                                   ),),
-                                  Padding(
-                                   padding: EdgeInsets.only(top: 20,bottom: 10),
-                                   child: Text("0.769 x 580 = 446 ",style: TextStyle(
+                                   Padding(
+                                   padding: const EdgeInsets.only(top: 20,bottom: 10),
+                                   child:  Text("$pricereq x $singleproprice = $total",
+                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold
                                    ),),
                                  ),
@@ -275,17 +297,17 @@ class _SingleproductState extends State<Singleproduct> {
                     boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
                     blurRadius: 3),  
                     ]),
-                        child: const Padding(
-                          padding:  EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10 ),
+                        child:  Padding(
+                          padding: const EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10 ),
                           child:  Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                             Padding(
+                            const Padding(
                                padding: EdgeInsets.only(bottom: 20),
                                child: Text("Description",style: TextStyle(fontWeight: FontWeight.bold),),
                              ),
-                             Text("Seer fish- Neymeen or in some areas called ayikkora; king of fishes,  is the  favourite dish for malayalees because great  taste and health benefits.Seer fish- Neymeen or in some areas called ayikkora; king of fishes,  is the  favourite dish for malayalees because great  taste and health benefits.Seer fish- Neymeen or in some areas called ayikkora; king of fishes,  is the  favourite dish for malayalees because great  taste and health benefits.")
+                             Text(singlprodesc)
                             ],
                           ),
                         ),
@@ -326,6 +348,27 @@ class _SingleproductState extends State<Singleproduct> {
         ),
       ),
     );
+  }
+  void singleproUser() async{
+     const prod_id = "213";
+     const userid ="";
+     const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
+     
+     final formData = FormData.fromMap({
+       'product_id' : prod_id,
+       'user_id' : userid,
+       'key': key
+     });
+     final result = await Api().singleproductUserApi(formData);
+     
+     if (result != null){
+      if(result.status == "success"){
+         Singleproname = result.data.name;
+         singleproimg = result.data.images[0];
+         singleproprice = result.data.wholePrice.toString();
+         singlprodesc = result.data.description;
+      }
+     }
   }
 }
 

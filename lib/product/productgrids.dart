@@ -44,7 +44,10 @@ class Productgrids extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
                               child: Column(
                                 children: [
-                                  Image.network(product.image.toString(),fit: BoxFit.contain,),
+                                  SizedBox(
+                                    height: 125,
+                                    width: 150,
+                                    child: Image.network(product.image.toString(),fit: BoxFit.fill,)),
                                   const Text("data")
                                 ],
                               ),
