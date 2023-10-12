@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:meatshopproj/api.dart';
 
 class SingleRecipes extends StatefulWidget {
   const SingleRecipes({super.key});
@@ -98,5 +100,26 @@ class _SingleRecipesState extends State<SingleRecipes> {
         ),
       )),
     );
+  }
+  void singleReciUser() async{
+    const recipe_id = "13";
+    const user_id = "565";
+    const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
+    
+    final formdata =FormData.fromMap(
+      {
+       'recipe_id': recipe_id,
+       'user_id':user_id,
+       'key':key
+      }
+    );
+    final result = await Api().singlereciUserApi(formdata);
+    if (result != null){
+      if(result.status == "success"){
+        if(result.data != null){
+          
+        }
+      }
+    }
   }
 }

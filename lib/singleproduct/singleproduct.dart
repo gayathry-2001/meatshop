@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:meatshopproj/modals/singleproductmodal.dart';
+// import 'package:meatshopproj/modals/singleproductmodal.dart';
 
 import '../api.dart';
 import 'Bottombar.dart';
@@ -135,7 +135,7 @@ class _SingleproductState extends State<Singleproduct> {
                                const Text("Request your quantity"),
                                 Row(
                                   children: [
-                                    Text("whole: 180/500gm"),
+                                    const Text("whole: 180/500gm"),
                                     const Spacer(),
                                     Text("\$ $singleproprice")
                                   ],
@@ -326,7 +326,7 @@ class _SingleproductState extends State<Singleproduct> {
                             // ignore: sized_box_for_whitespace
                             child: Container(
                               height: 400,
-                              child:const SingleProductgrids()),
+                              child: SingleProductgrids()),
                           ),
                           
                         ],
@@ -365,8 +365,9 @@ class _SingleproductState extends State<Singleproduct> {
       if(result.status == "success"){
          Singleproname = result.data.name;
          singleproimg = result.data.images[0];
-         singleproprice = result.data.wholePrice.toString();
+         singleproprice = result.data.wholePrice;
          singlprodesc = result.data.description;
+         
       }
      }
   }

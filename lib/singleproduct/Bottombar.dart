@@ -41,9 +41,9 @@ class _BottombarState extends State<Bottombar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(onPressed: (){
-                    // setState(() {
-                    //   press=!press;
-                    // });
+                    setState(() {
+                      press=!press;
+                    });
                   }, icon: Icon(Icons.favorite_sharp,
                   color: press == true? const Color.fromARGB(255, 252, 251, 251) : const Color.fromARGB(255, 250, 1, 1),
                   shadows: const [Shadow(

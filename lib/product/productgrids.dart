@@ -12,13 +12,19 @@ class Productgrids extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
+    /*24 is for notification bar on Android*/
+    final double itemHeight = (size.height - kToolbarHeight) / 2.5;
+    final double itemWidth = size.width*1.2;
     return  ValueListenableBuilder(
       valueListenable: productNotifier, 
       builder: (context, List<Productdata> newproduct, child) {
         return GridView.builder(
+          shrinkWrap: true,
                     itemCount: newproduct.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      
+                    gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio:(itemHeight/itemWidth) ,
                       crossAxisCount: 2,
                       crossAxisSpacing: 2,
                       mainAxisSpacing: 2), 
@@ -31,25 +37,28 @@ class Productgrids extends StatelessWidget {
                               return const Singleproduct();
                              }));
                           },
-                          child: Container(
-                            height: 50,
-                            width: 20,
-                            // decoration: BoxDecoration(
-                            //   image: DecorationImage(image: AssetImage(
-                            //     gridimg[index]
-                            //   ),fit: BoxFit.fill)
-                            // ),
-                            color: Colors.white,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 125,
-                                    width: 150,
-                                    child: Image.network(product.image.toString(),fit: BoxFit.fill,)),
-                                  const Text("data")
-                                ],
+                          child: Expanded(
+                            child: Container(
+                              
+                              // decoration: BoxDecoration(
+                              //   image: DecorationImage(image: AssetImage(
+                              //     gridimg[index]
+                              //   ),fit: BoxFit.fill)
+                              // ),
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 125,
+                                    
+                                      child: Image.network(product.image.toString(),fit: BoxFit.fill,)),
+                                     SizedBox(
+                                      height: 100,
+                                      child: Text(product.name.toString()))
+                                  ],
+                                ),
                               ),
                             ),
                           ),

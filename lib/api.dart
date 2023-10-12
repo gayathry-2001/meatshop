@@ -4,7 +4,9 @@ import 'package:meatshopproj/main.dart';
 import 'package:meatshopproj/modals/homemodal.dart';
 import 'package:meatshopproj/modals/loginmodal.dart';
 import 'package:meatshopproj/modals/productmodal.dart';
+import 'package:meatshopproj/modals/recipesmodal.dart';
 import 'package:meatshopproj/modals/registermodal.dart';
+import 'package:meatshopproj/modals/singlerecipesmodal.dart';
 import 'package:meatshopproj/url/url.dart';
 
 import 'modals/singleproductmodal.dart';
@@ -85,7 +87,25 @@ Future <Singleproductmodal?> singleproductUserApi (FormData formdata) async{
   }
 }
 
+Future <Recipesmodal?> recipesUserApi (FormData formdata) async{
+  try{
+    final result = await dio.post(url.recipEnd,data: formdata);
+    return Recipesmodal.fromJson(result.data);
+  }
+  on DioException catch(e){
+    print(e);
+  }
+}
 
+Future <Singlerecimodal?> singlereciUserApi (FormData formdata) async{
+  try{
+    final result = await dio.post(url.singlerecipEnd,data: formdata);
+    return Singlerecimodal.fromJson(result.data);
+  }
+  on DioException catch(e){
+    print(e);
+  }
+}
 
 
 

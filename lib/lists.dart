@@ -3,17 +3,17 @@
 // import 'package:flutter/material.dart';
 
 final List  carouselimg = [
-    "assets/images/fishimg.jpg",
-     "assets/images/fishimg.jpg",
-     "assets/images/fishimg.jpg",
-     "assets/images/fishimg.jpg",
+    "assets/images/fish1.jpg",
+  "assets/images/fish2.jpg",
+  "assets/images/fish3.jpg",
+  "assets/images/fish4.jpg"
 ];
 
 final List gridimg = [
-  "assets/images/gridfish.jpg",
-  "assets/images/gridfish.jpg",
-  "assets/images/gridfish.jpg",
-  "assets/images/gridfish.jpg"
+  "assets/images/fish5.jpg",
+  "assets/images/images.jpg",
+  "assets/images/fish3.jpg",
+  "assets/images/fish4.jpg"
 ];
 
 const List iconList =  [
