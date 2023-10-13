@@ -10,106 +10,160 @@ class SingleRecipes extends StatefulWidget {
 }
 
 class _SingleRecipesState extends State<SingleRecipes> {
+  var singlereciname;
+  var singlerecical ;
+  var singlerecitym;
+  var singlereciingre;
+  var singlerecicook;
+  var singlereciimg;
   @override
   Widget build(BuildContext context) {
+    singleReciUser();
     return  Scaffold
     (
-      appBar: AppBar(title:const Text("Item name")),
-      body: SafeArea(child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                // color: Colors.red,
-                // image: DecorationImage(image: AssetImage(" assets/images/gridfish.jpg"),
-                // fit: BoxFit.fill)
-              ),
-              child: Image.asset("assets/images/images.jpg",fit: BoxFit.fill,),
-              
-            ),
-            Stack(
-              children: [
-                Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    boxShadow: [BoxShadow(color: Color.fromARGB(53, 60, 58, 58),
-                   ),]
-                    
-                  ),
-                child: const Padding(
-                  padding:  EdgeInsets.only(left: 30,top: 10),
-                  child:  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("data",style: TextStyle(color: Colors.white,
-                      fontSize: 25),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Row(
-                          
-                          children: [
-                             Text("data",style: TextStyle(color: Colors.white,
-                             fontSize: 18),),
-                             
-                              Padding(
-                                padding: EdgeInsets.only(left: 30),
-                                child: Text("data",style: TextStyle(color: Colors.white,
-                                fontSize: 18),),
-                              ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+      appBar: AppBar(title: Text(singlereciname)),
+      body: SafeArea(child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              Container(
+                height: 270,
+                width: double.infinity,
+                foregroundDecoration:const BoxDecoration(
+                gradient: LinearGradient(
+                  
+                  colors: [Colors.transparent, Colors.transparent, Colors.transparent,  Color.fromARGB(255, 0, 0, 0)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0, 0.6, 0, 10],
                 ),
-                              ),
-              ],
-            ),
-             
-                    const Padding(
-                      padding: EdgeInsets.only(top: 30,bottom: 20,left: 30),
-                      child: Text("Ingredients",style: 
-                      TextStyle(fontWeight: FontWeight.bold),),
+              ),
+
+                child: Image.network(singlereciimg,fit: BoxFit.fill,
+                ),
+                
+              ),
+           
+          Positioned(
+            child: 
+              Padding(
+                padding:  const EdgeInsets.only(left: 30,top: 200),
+                child:  Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(singlereciname,style:const TextStyle(color: Colors.white,
+                    fontSize: 25,
+                    shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 50),]),
                     ),
                      Padding(
-                     padding:const EdgeInsets.only(top: 0,bottom: 20,left: 30),
-                      child: SizedBox(
-                        height: 80,
-                        child: ListView(children:const [
-                          Text("data"),
-                          Text("data"),Text("data"),Text("data"),Text("data"),
-                        ],),
-                      )
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        
+                        children: [
+                          
+                         const Icon(Icons.timer_outlined,color: Colors.white,
+                         shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),
+                           Text(singlerecitym,style: 
+                           const TextStyle(color: Colors.white,
+                           fontSize: 16,
+                           shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),),
+                          
+                            const Padding(
+                              padding:  EdgeInsets.only(left: 30),
+                              child:  Icon(Icons.local_fire_department_outlined,color: Colors.white,
+                              shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),
+                            ),
+                            Text(singlerecical,
+                            style: const TextStyle(color: Colors.white,
+                            fontSize: 16,
+                            shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            
+          ), ],
+          ),
+           
+                  Expanded(
+                    child: ListView(
+                      children: [
+                       
+                     
+                      Padding(
+                     padding:const EdgeInsets.only(top: 20,bottom: 20,left: 20,right: 20),
+                      
+                      
+                       
+                         child: Container(
+                          padding: EdgeInsets.all(10),
+                           decoration:const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    boxShadow: [BoxShadow(color:Color.fromARGB(255, 136, 177, 218),
+                    blurRadius: 10)]
+                  ),
+                          
+                          child: Column(
+                            children: [
+                               const Padding(
+                          padding: EdgeInsets.only(top: 30,bottom: 20,left: 20),
+                          child: Text("Ingredients",style: 
+                          TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 18),),
+                        ),
+                              Text(singlereciingre),
+                            ],
+                          )),
+                         
+                       
+                      
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 30,bottom: 20,left: 30),
-                      child: Text("How to cook",style: 
-                      TextStyle(fontWeight: FontWeight.bold),),
+                    
+                    Padding(
+                      padding:const EdgeInsets.only(top: 20,bottom: 20,left: 20,right: 20),
+                      child: Container(
+                        decoration:const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      boxShadow: [BoxShadow(color:Color.fromARGB(255, 136, 177, 218),
+                      blurRadius: 10)]
+                                      ),
+                        child: Padding(
+                        padding: const EdgeInsets.only(top: 0,bottom: 20,left: 20,right: 20),
+                          child:  Column(
+                            children: [
+                              const Padding(
+                        padding: EdgeInsets.only(top: 30,bottom: 20,left: 0),
+                        child: Text("How to cook",style: 
+                        TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                      ),
+                              Text(singlerecicook),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ), ],
                     ),
-                   const Padding(
-                    padding: EdgeInsets.only(top: 0,bottom: 20,left: 30),
-                      child:  Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
-                    ),
-          ],
-        ),
+                  ),
+        ],
       )),
     );
   }
   void singleReciUser() async{
-    const recipe_id = "13";
-    const user_id = "565";
+    const recipeid = "13";
+    const userid = "565";
     const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
     
     final formdata =FormData.fromMap(
       {
-       'recipe_id': recipe_id,
-       'user_id':user_id,
+       'recipe_id': recipeid,
+       'user_id':userid,
        'key':key
       }
     );
@@ -117,7 +171,12 @@ class _SingleRecipesState extends State<SingleRecipes> {
     if (result != null){
       if(result.status == "success"){
         if(result.data != null){
-          
+          singlereciname = result.data?.recipie!.name!;
+          singlereciingre = result.data?.recipie!.ingredients!;
+          singlerecicook = result.data?.recipie!.description!;
+          singlerecitym = result.data?.recipie!.time!;
+          singlerecical = result.data?.recipie!.cals!;
+          singlereciimg = result.data?.recipie!.image!;
         }
       }
     }

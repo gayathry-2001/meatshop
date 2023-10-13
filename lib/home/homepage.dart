@@ -131,7 +131,7 @@ class _HomepageState extends State<Homepage> {
      'key': key
      });
      final result = await Api().homeUserApi(formdata);
-
+      print("###############$result");
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){

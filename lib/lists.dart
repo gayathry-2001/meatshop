@@ -21,3 +21,10 @@ const List iconList =  [
   "Icon(Icons.category_rounded)",
   "Icon(Icons.settings_outlined)"
 ];
+
+final List name = [
+  "Indian Mackeral",
+  "Tilapia/ Jilebi fish",
+  "Pink perch",
+  "Catla"
+];

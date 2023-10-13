@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/main.dart';
+import 'package:meatshopproj/modals/editpromodal.dart';
 import 'package:meatshopproj/modals/homemodal.dart';
 import 'package:meatshopproj/modals/loginmodal.dart';
 import 'package:meatshopproj/modals/productmodal.dart';
@@ -107,6 +108,14 @@ Future <Singlerecimodal?> singlereciUserApi (FormData formdata) async{
   }
 }
 
-
+Future <Editpromdal?> EditproUserApi (FormData formdata) async{
+  try{
+   final result =await dio.post(url.editproEnd,data: formdata);
+   return Editpromdal.fromJson(result.data);
+  }
+  on DioException catch(e){
+    print(e);
+  }
+}
 
 }

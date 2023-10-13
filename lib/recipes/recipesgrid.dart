@@ -12,13 +12,18 @@ class Recipesgrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var size = MediaQuery.of(context).size;
+
+    // /*24 is for notification bar on Android*/
+    // final double itemHeight = (size.height - kToolbarHeight) / 2.5;
+    // final double itemWidth = size.width*1.2;
     return ValueListenableBuilder(
       valueListenable: recipenotifier, 
       builder:(context, List<Recipedata> recipe, child) {
           return  GridView.builder(
                     itemCount: recipe.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      
+                    gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
+                      // childAspectRatio: (itemHeight/itemWidth),
                       crossAxisCount: 2,
                       crossAxisSpacing: 2,
                       mainAxisSpacing: 2), 
@@ -33,8 +38,7 @@ class Recipesgrid extends StatelessWidget {
                           },
                           child: Container(
                             color: Colors.white,
-                            height: 20,
-                            width: 20,
+                            
                             // decoration: BoxDecoration(
                             //   image: DecorationImage(image: AssetImage(
                             //     gridimg[index]
@@ -43,9 +47,21 @@ class Recipesgrid extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
                               child: Column(
+                                
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Image.asset(recipes.image.toString()),
-                                   Text(recipes.name.toString())
+                                 SizedBox(
+                                  height: 130,
+                                  width: 200,
+                                  child: Image.network(recipes.image.toString(),
+                                  fit: BoxFit.fill,)),
+                                   Text(recipes.name.toString(),maxLines: 1,),
+                                 
+                                   Text("Cooking:${recipes.time.toString()}",
+                                   style: TextStyle(
+                                    fontSize: 12
+                                   ),)
                                 ],
                               ),
                             ),

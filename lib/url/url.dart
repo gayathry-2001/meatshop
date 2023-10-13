@@ -11,4 +11,5 @@ String productEnd = 'completeapi/categoryProducts&api_token=';
 String singleproEnd = 'completeapi/getProduct&api_token=';
 String recipEnd = 'completeapi/getRecipes&api_token=';
 String singlerecipEnd = 'completeapi/recipe&api_token';
+String editproEnd = 'completeapi/updateProfile&api_token';
 }

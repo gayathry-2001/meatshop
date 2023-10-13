@@ -15,14 +15,20 @@ class Singleproduct extends StatefulWidget {
 // ValueNotifier<List<Singledata>> singleproNotifier = ValueNotifier([]);
 
 class _SingleproductState extends State<Singleproduct> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    singleproUser();
+  }
   
   var kgcount = 0;
   var gmcount = 0;
   var dropdownvalue = "Select";
-  var Singleproname;
-  var singleproimg ;
-  var singlprodesc;
-  var singleproprice;
+  var Singleproname="";
+  var singleproimg ="";
+  var singlprodesc="";
+  var singleproprice="";
   get kg => kgcount;
   get gm => gmcount;
   get pricereq => "$kg.$gm";
@@ -39,7 +45,7 @@ class _SingleproductState extends State<Singleproduct> {
    var iccolor= const Color.fromARGB(255, 246, 242, 242); 
   @override
   Widget build(BuildContext context) {
-    singleproUser();
+    
     return  Scaffold(
       
       appBar: AppBar(
@@ -326,16 +332,17 @@ class _SingleproductState extends State<Singleproduct> {
                             // ignore: sized_box_for_whitespace
                             child: Container(
                               height: 400,
-                              child: SingleProductgrids()),
+                              child: const SingleProductgrids()),
                           ),
                           
                         ],
                       )),
-                      TextButton(onPressed: (){
+                      // TextButton(onPressed: (){
 
-                      }, 
-                      child: const Text("View more",
-                      style: TextStyle(color: Colors.blue),))
+                      // }, 
+                      // // child: const Text("View more",
+                      // style: TextStyle(color: Colors.blue),))
+                      // )
                 
                 
                     ],
@@ -350,12 +357,12 @@ class _SingleproductState extends State<Singleproduct> {
     );
   }
   void singleproUser() async{
-     const prod_id = "213";
-     const userid ="";
+     const prodid = "213";
+     const userid ="565";
      const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
      
      final formData = FormData.fromMap({
-       'product_id' : prod_id,
+       'product_id' : prodid,
        'user_id' : userid,
        'key': key
      });
