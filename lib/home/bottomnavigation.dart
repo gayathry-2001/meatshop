@@ -1,9 +1,12 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:meatshopproj/home/cart.dart';
 import 'package:meatshopproj/home/categories.dart';
 import 'package:meatshopproj/home/homepage.dart';
 import 'package:meatshopproj/home/settings.dart';
+
+import 'drawer.dart';
 
 class AnimBottomnavigation extends StatefulWidget {
   const AnimBottomnavigation({
@@ -25,33 +28,48 @@ class _AnimBottomnavigationState extends State<AnimBottomnavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  //     floatingActionButton: Container(
+       appBar: AppBar(
+        title: CircleAvatar(
+          radius: 30,
 
-  //        decoration: const BoxDecoration(
-  //                               shape: BoxShape.circle,
-  //                               gradient: LinearGradient(colors: [Color.fromARGB(255, 35, 180, 232),
-  //                               Color.fromARGB(255, 207, 188, 241)])
-  //                             ),
-
-  //        child: FloatingActionButton(
-          
-  //         onPressed: (){
-  //           Navigator.push(context, 
-  //           MaterialPageRoute(builder: (context){
-  //             return const Homepage();
-  //           }));
+          child: Image.asset("assets/images/logo-no-background.png",)),
        
-  //         },
-          
-  //         splashColor: const Color.fromARGB(255, 245, 240, 240),
-  //         backgroundColor: Colors.transparent,
-  //         hoverColor: Colors.white,
-  //         child: const Icon(Icons.home,color:Colors.white,size: 30,),
-       
-  //            //params
-  //         ),
-  //      ),
-  //  floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          centerTitle: true,
+        actions:  [
+         const Padding(
+           padding: EdgeInsets.only(right: 20),
+           child: Icon(Icons.notifications_outlined),
+         ),
+         IconButton(onPressed: (){
+           Navigator.push(context,
+           MaterialPageRoute(
+            builder: ((context) => const Cart())));
+         },
+          icon:  const Icon(Icons.shopping_cart), )
+        
+        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30,right: 30,bottom: 10),
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 10),
+              height: 50,
+              child: TextField(               
+              decoration: InputDecoration(
+                filled: true,
+                border: InputBorder.none,
+                fillColor: Colors.white,
+                prefixIcon: IconButton(onPressed: (){
+                }, icon: const Icon(Icons.search))
+              ),
+                        
+                        ),
+            ),
+          ),          
+         ),
+      ),
+      drawer:  const Draw(),
      bottomNavigationBar:AnimatedBottomNavigationBar(
     
      

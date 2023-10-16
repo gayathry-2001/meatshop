@@ -45,43 +45,7 @@ class _HomepageState extends State<Homepage> {
     });
     return  Scaffold(
 
-      appBar: AppBar(
-        title: CircleAvatar(
-          radius: 30,
-
-          child: Image.asset("assets/images/logo-no-background.png",)),
-       
-          centerTitle: true,
-        actions: const [
-         Padding(
-           padding: EdgeInsets.only(right: 20),
-           child: Icon(Icons.notifications_outlined),
-         ),
-         
-         Icon(Icons.shopping_cart), 
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30,right: 30,bottom: 10),
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 10),
-              height: 50,
-              child: TextField(               
-              decoration: InputDecoration(
-                filled: true,
-                border: InputBorder.none,
-                fillColor: Colors.white,
-                prefixIcon: IconButton(onPressed: (){
-                }, icon: const Icon(Icons.search))
-              ),
-                        
-                        ),
-            ),
-          ),          
-         ),
-      ),
-      drawer:  const Draw(),
+     
       body: SafeArea(
         child: Container(
           color: const Color.fromARGB(155, 239, 236, 236),

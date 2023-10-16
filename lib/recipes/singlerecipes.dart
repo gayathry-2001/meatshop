@@ -34,10 +34,10 @@ class _SingleRecipesState extends State<SingleRecipes> {
                 foregroundDecoration:const BoxDecoration(
                 gradient: LinearGradient(
                   
-                  colors: [Colors.transparent, Colors.transparent, Colors.transparent,  Color.fromARGB(255, 0, 0, 0)],
+                  colors: [Colors.transparent, Colors.transparent, Color.fromARGB(243, 0, 0, 0),  Color.fromARGB(255, 0, 0, 0)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0, 0.6, 0, 10],
+                  stops: [0, 0.6, 10,10],
                 ),
               ),
 

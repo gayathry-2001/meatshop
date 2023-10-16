@@ -14,7 +14,7 @@ class CarouselWithIndicatorDemo extends StatefulWidget {
 }
 
 class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
-  int current = 0;
+  int current = 0 ;
   final CarouselController _controller = CarouselController();
 
   @override
@@ -63,18 +63,17 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               return GestureDetector(
                 onTap: () {
                   _controller.animateToPage(entry.key);
-
+                  
                 } ,
                 child: Container(
                   width: 12.0,
                   height: 12.0,
                   margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                   decoration: BoxDecoration(
-                      // boxShadow: [BoxShadow(color: Colors.black,spreadRadius: 20,)],
+                     
                       shape: BoxShape.circle,
-                      color: (Theme.of(context).brightness == Brightness.dark
-                              ? const Color.fromARGB(255, 191, 65, 65)
-                              :  const Color.fromARGB(255, 25, 98, 171)) 
+                      
+                      color:const Color.fromARGB(255, 25, 98, 171)
                           .withOpacity(current == entry.key ? 0.9 : 0.4)),
                 ),
               );
@@ -94,18 +93,15 @@ final List<Widget> imageSliders = carouselimg
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
           child: Stack(
             children: <Widget>[
-              Image.asset(item, fit: BoxFit.cover, width: 1000.0),
+              Image.asset(item, fit: BoxFit.cover,width: 1000,),
               Positioned(
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
                 child: Container(
-                  decoration:const BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(199, 205, 20, 20),
-                        Color.fromARGB(245, 152, 18, 18)
-                      ],
+                      colors: [Colors.red,Colors.black],
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                     ),

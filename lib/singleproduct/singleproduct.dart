@@ -17,7 +17,7 @@ class Singleproduct extends StatefulWidget {
 class _SingleproductState extends State<Singleproduct> {
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     singleproUser();
   }
@@ -25,7 +25,7 @@ class _SingleproductState extends State<Singleproduct> {
   var kgcount = 0;
   var gmcount = 0;
   var dropdownvalue = "Select";
-  var Singleproname="";
+  var singleproname="";
   var singleproimg ="";
   var singlprodesc="";
   var singleproprice="";
@@ -49,7 +49,7 @@ class _SingleproductState extends State<Singleproduct> {
     return  Scaffold(
       
       appBar: AppBar(
-        title:  Text(Singleproname),
+        title:  Text(singleproname),
         actions: [
           IconButton(onPressed: (){
     
@@ -83,7 +83,7 @@ class _SingleproductState extends State<Singleproduct> {
                     ]),
                    child: Padding(
                      padding: const EdgeInsets.only(top: 10,left: 20,right: 20),
-                     child:  Text(Singleproname,
+                     child:  Text(singleproname,
                          maxLines: 2,),
                    ),
                  ),
@@ -370,7 +370,7 @@ class _SingleproductState extends State<Singleproduct> {
      
      if (result != null){
       if(result.status == "success"){
-         Singleproname = result.data.name;
+         singleproname = result.data.name;
          singleproimg = result.data.images[0];
          singleproprice = result.data.wholePrice;
          singlprodesc = result.data.description;

@@ -34,8 +34,7 @@ class Grids extends StatelessWidget {
                           },
                           child: Container(
                             color: const Color.fromARGB(255, 253, 253, 253),
-                            height: 20,
-                            width: 20,                       
+                                                 
                             child: Padding(
                               padding: const EdgeInsets.only(left:10.0,right: 10,top: 10),
                               child: Column(
