@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meatshopproj/modals/productmodal.dart';
 // import 'package:meatshopproj/home/gridviews.dart';
 import 'package:meatshopproj/product/productgrids.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../api.dart';
 import '../modals/homemodal.dart';
@@ -17,6 +18,8 @@ class Product extends StatefulWidget {
 }
 ValueNotifier<List<Productdata>> productNotifier = ValueNotifier([]);
 class _ProductState extends State<Product> {
+   
+   var id ="";
 
   
   @override
@@ -84,6 +87,10 @@ class _ProductState extends State<Product> {
        
      
     
+  }
+  void getval() async{
+    SharedPreferences share = await SharedPreferences.getInstance();
+    id = share.getString("product")!;
   }
   
   void showSuccessmessage() {}

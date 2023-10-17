@@ -2,9 +2,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/home/homepage.dart';
+import 'package:meatshopproj/modals/loginmodal.dart';
 import 'package:meatshopproj/register.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'api.dart';
 import 'home/bottomnavigation.dart';
 
@@ -16,6 +18,7 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  final val1 = "";
    bool passwordVisible=false; 
   final mailcontrol = TextEditingController();
   final passcontrol = TextEditingController();
@@ -203,13 +206,18 @@ class _LoginpageState extends State<Loginpage> {
                 ),
               ),
             )
-
-
           ],
         ),
         
         ),
     );
+   
+  }
+
+    void saveval() async {
+    SharedPreferences share = await SharedPreferences.getInstance();
+    share.setString("userid",Loginmodal().userId!);
+   
   }
   void loginUser() async{
     final mail = mailcontrol.text;

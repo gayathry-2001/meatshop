@@ -28,3 +28,10 @@ final List name = [
   "Pink perch",
   "Catla"
 ];
+
+final List settingvals = [
+  "My Profile","My orders","Wallet","Refer & Earn","About Us","FAQ",
+  "Help","Contact Us","Log Out"
+
+   
+];

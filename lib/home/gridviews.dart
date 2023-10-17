@@ -13,7 +13,7 @@ class Grids extends StatelessWidget {
     return  ValueListenableBuilder(
       valueListenable: categoryNotifier,
        builder: (context, List<Categories> newproduct, child) {
-         return 
+         return
 
          GridView.builder(
                      physics:const ScrollPhysics(),

@@ -45,7 +45,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             //    }),
             
             options:  CarouselOptions(  
-                    
+                    initialPage: 0,
                     pageSnapping: true,        
                     height: 180.0,
                     enlargeCenterPage: true,
@@ -55,30 +55,57 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                     enableInfiniteScroll: true,
                     autoPlayAnimationDuration:const Duration(milliseconds: 800),
                     viewportFraction: 0.8,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        current=index;
+                      });
+                    },
                   ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: carouselimg.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () {
-                  _controller.animateToPage(entry.key);
-                  
-                } ,
-                child: Container(
-                  width: 12.0,
-                  height: 12.0,
-                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                  decoration: BoxDecoration(
-                     
-                      shape: BoxShape.circle,
-                      
-                      color:const Color.fromARGB(255, 25, 98, 171)
-                          .withOpacity(current == entry.key ? 0.9 : 0.4)),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: carouselimg.map((item) {
+            int index = carouselimg.indexOf(item);
+            return GestureDetector(
+              onTap: (){
+                 _controller.animateToPage(item.key);
+              },
+              child: Container(
+                width: 12,
+                height: 12,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: current == index ? Colors.blue : Colors.grey,
                 ),
-              );
-            }).toList(),
-          ),
+              ),
+            );
+          }).toList(),
+        ),
+
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: carouselimg.asMap().entries.map((entry) {
+          //     int index = carouselimg.indexOf(entry.key);
+          //     return GestureDetector(
+          //       onTap: () {
+          //         _controller.animateToPage(entry.key);
+                 
+          //       } ,
+          //       child: Container(
+          //         width: 12.0,
+          //         height: 12.0,
+          //         margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+          //         decoration: BoxDecoration(
+                     
+          //             shape: BoxShape.circle,
+                      
+          //              color:current == index ? Colors.blue : Colors.redAccent 
+          //             ),
+          //       ),
+          //     );
+          //   }).toList(),
+          // ),
           
         ]);
       
@@ -94,21 +121,21 @@ final List<Widget> imageSliders = carouselimg
           child: Stack(
             children: <Widget>[
               Image.asset(item, fit: BoxFit.cover,width: 1000,),
-              Positioned(
-                bottom: 0.0,
-                left: 0.0,
-                right: 0.0,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.red,Colors.black],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                    ),
-                  ),
+              // Positioned(
+              //   bottom: 0.0,
+              //   left: 0.0,
+              //   right: 0.0,
+              //   child: Container(
+              //     decoration: const BoxDecoration(
+              //       gradient: LinearGradient(
+              //         colors: [Colors.red,Colors.black],
+              //         begin: Alignment.bottomCenter,
+              //         end: Alignment.topCenter,
+              //       ),
+              //     ),
                
-                ),
-              ),
+              //   ),
+              // ),
             ],
           )),
     ))

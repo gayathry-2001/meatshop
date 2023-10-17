@@ -8,8 +8,10 @@ import 'package:meatshopproj/api.dart';
 import 'package:meatshopproj/home/carouselindicator.dart';
 import 'package:meatshopproj/home/drawer.dart';
 import 'package:meatshopproj/home/gridviews.dart';
+import 'package:meatshopproj/modals/productmodal.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modals/homemodal.dart';
 
@@ -25,6 +27,7 @@ ValueNotifier<List<Banners>> bannerNotifier = ValueNotifier([]);
 
 
 class _HomepageState extends State<Homepage> {
+  var id ="";
 
   @override
   void initState() {
@@ -86,7 +89,7 @@ class _HomepageState extends State<Homepage> {
     
   }
   void homeUser() async{
-    const userid ="565";
+    final userid ="565";
     const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
     
     
@@ -95,7 +98,7 @@ class _HomepageState extends State<Homepage> {
      'key': key
      });
      final result = await Api().homeUserApi(formdata);
-      print("###############$result");
+      print("###############$userid");
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
@@ -131,7 +134,7 @@ class _HomepageState extends State<Homepage> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      description: Text("message"),
+      description: const Text("message"),
       position: MotionToastPosition.top,
       barrierColor: Colors.black.withOpacity(0.3),
       width: 300,
@@ -156,6 +159,17 @@ class _HomepageState extends State<Homepage> {
       height: 80,
       dismissable: true,
     ).show(context);
+  }
+ 
+  void getval() async{
+    SharedPreferences share = await SharedPreferences.getInstance();
+    id = share.getString("userid")!;
+  }
+
+  void saveval2() async{
+    SharedPreferences share = await SharedPreferences.getInstance();
+    share.setString("product",Categories().categoryId.toString());
+    
   }
 }
 

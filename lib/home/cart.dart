@@ -99,9 +99,15 @@ class _CartState extends State<Cart> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             
-                          Text("Final Price"),
+                          Padding(
+                            padding: EdgeInsets.only(top: 0,bottom: 10),
+                            child: Text("Final Price"),
+                          ),
                           Text("Coupon discount :"),
-                          Text("Delivery charge :"),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10,bottom: 10),
+                            child: Text("Delivery charge :"),
+                          ),
                           Text("Sub Total",style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14
@@ -118,9 +124,15 @@ class _CartState extends State<Cart> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             
-                          Text("0.76 x 680 = 446"),
+                          Padding(
+                            padding: EdgeInsets.only(top: 0,bottom: 10),
+                            child: Text("0.76 x 680 = 446"),
+                          ),
                           Text("0"),
-                          Text("FREE"),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10,bottom: 10),
+                            child: Text("FREE", style: TextStyle(color: Color.fromARGB(255, 58, 136, 61)),),
+                          ),
                           Text("Rs. 468.00")
                           ],
                         ),
@@ -146,10 +158,6 @@ class _CartState extends State<Cart> {
                 height: 50,
                 width: MediaQuery.of(context).size.width,
                child: ElevatedButton(onPressed: (){
-              //  const snack =   SnackBar(
-              //     content:  Text("Regsitered Successfully")
-              //     );
-              //     ScaffoldMessenger.of(context).showSnackBar(snack);
              
                 
                 }, 

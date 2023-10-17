@@ -61,293 +61,295 @@ class _SingleproductState extends State<Singleproduct> {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  color: const Color.fromARGB(255, 239, 236, 236),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 230,
-                        decoration:  BoxDecoration(
-                          color: Colors.white10,
-                          image: DecorationImage(image: NetworkImage(singleproimg.toString()),
-                          fit: BoxFit.fill)
-                        ),),
-                    
-                 Container(
-                  height: 60,
-                  decoration:const  BoxDecoration(
-                    color: Colors.white,
-                    boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
-                    blurRadius: 3),  
-                    ]),
-                   child: Padding(
-                     padding: const EdgeInsets.only(top: 10,left: 20,right: 20),
-                     child:  Text(singleproname,
-                         maxLines: 2,),
-                   ),
-                 ),
-                    const SizedBox(height: 10,),
-                       Container(
-                        height: 60,
-                        decoration:const  BoxDecoration(
-                    color: Colors.white,
-                    boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
-                    blurRadius: 3),  
-                    ]),
-                         child:  Padding(
-                           padding: const EdgeInsets.only(left: 20,right: 20),
-                           child: Row(
-                             children: [
-                                const Text("Choose your cut"),
-                                const Spacer(),
-                                Text(dropdownvalue),
-                                    DropdownButton(
-                                      
-                                      // value: dropdownvalue,
-                                      icon:  const Icon(Icons.keyboard_arrow_down),
-                                      items: cuts.map((String cuts) {
-                                         return DropdownMenuItem(
-                                                value: cuts,
-                                                child: Text(cuts),
-                                                  );
-                                           
-                                                  }).toList(),
-                                     onChanged: (String? newValue) { 
-                                            setState(() {
-                                              dropdownvalue = newValue!;
-                                                            
-                                            });
-                                          },)  
-                             ],
-                           ),
-                         ),
-                       ),
-                     const SizedBox(height: 10,),
-                     Container(
+              child: ListView(
+                children: [
+                  Container(
+                    color: const Color.fromARGB(255, 239, 236, 236),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 230,
+                          decoration:  BoxDecoration(
+                            color: Colors.white10,
+                            image: DecorationImage(image: NetworkImage(singleproimg.toString()),
+                            fit: BoxFit.fill)
+                          ),),
+                      
+                   Container(
+                    height: 60,
                     decoration:const  BoxDecoration(
-                    color: Colors.white,
-                    boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
-                    blurRadius: 3),  
-                    ]),
-                       child: Column(
-                         children: [
-                             Padding(
-                             padding: const EdgeInsets.only(left: 20,right: 20,bottom: 20,top: 10),
-                             child:  Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                               const Text("Request your quantity"),
-                                Row(
-                                  children: [
-                                    const Text("whole: 180/500gm"),
-                                    const Spacer(),
-                                    Text("\$ $singleproprice")
-                                  ],
-                                ),             
-                              ],
+                      color: Colors.white,
+                      boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
+                      blurRadius: 3),  
+                      ]),
+                     child: Padding(
+                       padding: const EdgeInsets.only(top: 10,left: 20,right: 20),
+                       child:  Text(singleproname,
+                           maxLines: 2,),
+                     ),
+                   ),
+                      const SizedBox(height: 10,),
+                         Container(
+                          height: 60,
+                          decoration:const  BoxDecoration(
+                      color: Colors.white,
+                      boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
+                      blurRadius: 3),  
+                      ]),
+                           child:  Padding(
+                             padding: const EdgeInsets.only(left: 20,right: 20),
+                             child: Row(
+                               children: [
+                                  const Text("Choose your cut"),
+                                  const Spacer(),
+                                  Text(dropdownvalue),
+                                      DropdownButton(
+                                        
+                                        // value: dropdownvalue,
+                                        icon:  const Icon(Icons.keyboard_arrow_down),
+                                        items: cuts.map((String cuts) {
+                                           return DropdownMenuItem(
+                                                  value: cuts,
+                                                  child: Text(cuts),
+                                                    );
+                                             
+                                                    }).toList(),
+                                       onChanged: (String? newValue) { 
+                                              setState(() {
+                                                dropdownvalue = newValue!;
+                                                              
+                                              });
+                                            },)  
+                               ],
                              ),
                            ),
-                        
-                     
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20,right: 20),
-                        child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              const Text("Kilogram",style: TextStyle(
-                                fontSize: 20
-                              ),),
-                              Row(
-                                children: [
-                                  IconButton(onPressed: (){
-                                   setState(() {
-                                    if(kgcount!=0) {
-                                      kgcount--;
-                                    }
-                                    });
-                                  }, icon: const Icon(Icons.remove_circle_outline,
-                                  size: 35,),
-                                  ),
-                                   Text("$kgcount",style: const TextStyle(
-                                fontSize: 20
-                              ),),
-                                   IconButton(onPressed: (){
-                                    setState(() {
-                                      kgcount++ ;
-                                    });
-                              }, icon: const Icon(Icons.add_circle_outline,
-                              size: 35,))
-                                ],
-                                
-                              ),
-                      
-                            ],
-                          ),
-                          const Spacer(),
-                      
-                           Column(
-                            children: [
-                              const Text("Gram",style: TextStyle(
-                                fontSize: 20
-                              ),),
-                              Row(
-                                children: [
-                                  IconButton(onPressed: (){
-                                    setState(() {
-                                      if(gmcount!=0){
-                                       gmcount = gmcount-1;}
-                                    });
-                                  }, icon: const Icon(Icons.remove_circle_outline,
-                                  size: 35,),
-                                  ),
-                                   Text("$gmcount",style:const TextStyle(
-                                fontSize: 20
-                              ),),
-                                   IconButton(onPressed: (){
-                                    setState(() {
-                                      gmcount=gmcount+1;
-                                    });
-                              }, icon: const Icon(Icons.add_circle_outline,
-                              size: 35,
-                              ))
-                                ],
-                                
-                              ),
-                      
-                            ],
-                          ),
-                        ],
-                        ),
-                      ),
-                       ])
-                      ),
-                      const SizedBox(height: 10,),
-                     
-                      Container(
-                    decoration:const  BoxDecoration(
-                    color: Colors.white,
-                    boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
-                    blurRadius: 3),  
-                    ]),
-            
-                        child:  Padding(
-                           padding: const EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10),
-                          child:  Row(
-                           
-                            children: [
-                              const Column(
+                         ),
+                       const SizedBox(height: 10,),
+                       Container(
+                      decoration:const  BoxDecoration(
+                      color: Colors.white,
+                      boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
+                      blurRadius: 3),  
+                      ]),
+                         child: Column(
+                           children: [
+                               Padding(
+                               padding: const EdgeInsets.only(left: 20,right: 20,bottom: 20,top: 10),
+                               child:  Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                 Padding(
-                                   padding: EdgeInsets.only(bottom: 10),
-                                   child: Text("Price Summary",style: TextStyle(
-                                    fontWeight: FontWeight.bold
-                                   ),),
-                                 ),
-                                 Text("Whole product price"),
-                                 Text("Whole product required"),
-                                 Text("Wastege"),
-                                 Text("Final weight"),
-                                 Text("Delivery charge :"),
-                                 Padding(
-                                   padding: EdgeInsets.only(top: 20,),
-                                   child: Text("Final price",style: TextStyle(
-                                    fontWeight: FontWeight.bold
-                                   ),),
-                                 ),
-                                 
+                                 const Text("Request your quantity"),
+                                  Row(
+                                    children: [
+                                      const Text("whole: 180/500gm"),
+                                      const Spacer(),
+                                      Text("\$ $singleproprice")
+                                    ],
+                                  ),             
                                 ],
-                              ),
-                              
-                             const Spacer(),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(bottom: 10),
-                                    child: Text("   "),
-                                  ),
-                                  
-                                  Text("$singleproprice /kg"),
-                                  Text("$pricereq kg"),
-                                 const Text(".27 kg"),
-                                 const Text(".57 kg"),
-                                 const Text(".FREE",style: TextStyle(
-                                    color: Colors.green
-                                  ),),
-                                   Padding(
-                                   padding: const EdgeInsets.only(top: 20,bottom: 10),
-                                   child:  Text("$pricereq x $singleproprice = $total",
-                                   style: const TextStyle(
-                                    fontWeight: FontWeight.bold
-                                   ),),
-                                 ),
-                        
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                
-                      const SizedBox(height: 10,),
-                
-                      Container(
-                    decoration:const  BoxDecoration(
-                    color: Colors.white,
-                    boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
-                    blurRadius: 3),  
-                    ]),
-                        child:  Padding(
-                          padding: const EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10 ),
-                          child:  Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                            const Padding(
-                               padding: EdgeInsets.only(bottom: 20),
-                               child: Text("Description",style: TextStyle(fontWeight: FontWeight.bold),),
+                               ),
                              ),
-                             Text(singlprodesc)
-                            ],
+                          
+                       
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20,right: 20),
+                          child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                const Text("Kilogram",style: TextStyle(
+                                  fontSize: 20
+                                ),),
+                                Row(
+                                  children: [
+                                    IconButton(onPressed: (){
+                                     setState(() {
+                                      if(kgcount!=0) {
+                                        kgcount--;
+                                      }
+                                      });
+                                    }, icon: const Icon(Icons.remove_circle_outline,
+                                    size: 35,),
+                                    ),
+                                     Text("$kgcount",style: const TextStyle(
+                                  fontSize: 20
+                                ),),
+                                     IconButton(onPressed: (){
+                                      setState(() {
+                                        kgcount++ ;
+                                      });
+                                }, icon: const Icon(Icons.add_circle_outline,
+                                size: 35,))
+                                  ],
+                                  
+                                ),
+                        
+                              ],
+                            ),
+                            const Spacer(),
+                        
+                             Column(
+                              children: [
+                                const Text("Gram",style: TextStyle(
+                                  fontSize: 20
+                                ),),
+                                Row(
+                                  children: [
+                                    IconButton(onPressed: (){
+                                      setState(() {
+                                        if(gmcount!=0){
+                                         gmcount = gmcount-1;}
+                                      });
+                                    }, icon: const Icon(Icons.remove_circle_outline,
+                                    size: 35,),
+                                    ),
+                                     Text("$gmcount",style:const TextStyle(
+                                  fontSize: 20
+                                ),),
+                                     IconButton(onPressed: (){
+                                      setState(() {
+                                        gmcount=gmcount+1;
+                                      });
+                                }, icon: const Icon(Icons.add_circle_outline,
+                                size: 35,
+                                ))
+                                  ],
+                                  
+                                ),
+                        
+                              ],
+                            ),
+                          ],
                           ),
                         ),
-                      ),
-                       SizedBox(height: 470,
-                      child:Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding:  EdgeInsets.only(left: 20,bottom: 20,top: 30),
-                            child:  Text("Similiar Products"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20,right: 20),
-                            // ignore: sized_box_for_whitespace
-                            child: Container(
-                              height: 400,
-                              child: const SingleProductgrids()),
-                          ),
+                         ])
+                        ),
+                        const SizedBox(height: 10,),
+                       
+                        Container(
+                      decoration:const  BoxDecoration(
+                      color: Colors.white,
+                      boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
+                      blurRadius: 3),  
+                      ]),
+            
+                          child:  Padding(
+                             padding: const EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10),
+                            child:  Row(
+                             
+                              children: [
+                                const Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                   Padding(
+                                     padding: EdgeInsets.only(bottom: 10),
+                                     child: Text("Price Summary",style: TextStyle(
+                                      fontWeight: FontWeight.bold
+                                     ),),
+                                   ),
+                                   Text("Whole product price"),
+                                   Text("Whole product required"),
+                                   Text("Wastege"),
+                                   Text("Final weight"),
+                                   Text("Delivery charge :"),
+                                   Padding(
+                                     padding: EdgeInsets.only(top: 20,),
+                                     child: Text("Final price",style: TextStyle(
+                                      fontWeight: FontWeight.bold
+                                     ),),
+                                   ),
+                                   
+                                  ],
+                                ),
+                                
+                               const Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(bottom: 10),
+                                      child: Text("   "),
+                                    ),
+                                    
+                                    Text("$singleproprice /kg"),
+                                    Text("$pricereq kg"),
+                                   const Text(".27 kg"),
+                                   const Text(".57 kg"),
+                                   const Text(".FREE",style: TextStyle(
+                                      color: Colors.green
+                                    ),),
+                                     Padding(
+                                     padding: const EdgeInsets.only(top: 20,bottom: 10),
+                                     child:  Text("$pricereq x $singleproprice = $total",
+                                     style: const TextStyle(
+                                      fontWeight: FontWeight.bold
+                                     ),),
+                                   ),
                           
-                        ],
-                      )),
-                      // TextButton(onPressed: (){
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                  
+                        const SizedBox(height: 10,),
+                  
+                        Container(
+                      decoration:const  BoxDecoration(
+                      color: Colors.white,
+                      boxShadow:[BoxShadow(color:Color.fromARGB(255, 156, 143, 143),
+                      blurRadius: 3),  
+                      ]),
+                          child:  Padding(
+                            padding: const EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 10 ),
+                            child:  Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                              const Padding(
+                                 padding: EdgeInsets.only(bottom: 20),
+                                 child: Text("Description",style: TextStyle(fontWeight: FontWeight.bold),),
+                               ),
+                               Text(singlprodesc)
+                              ],
+                            ),
+                          ),
+                        ),
+                         SizedBox(height: 470,
+                        child:Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Padding(
+                              padding:  EdgeInsets.only(left: 20,bottom: 20,top: 30),
+                              child:  Text("Similiar Products"),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20,right: 20),
+                              // ignore: sized_box_for_whitespace
+                              child: Container(
+                                height: 400,
+                                child: const SingleProductgrids()),
+                            ),
+                            
+                          ],
+                        )),
+                        // TextButton(onPressed: (){
 
-                      // }, 
-                      // // child: const Text("View more",
-                      // style: TextStyle(color: Colors.blue),))
-                      // )
-                
-                
-                    ],
+                        // }, 
+                        // // child: const Text("View more",
+                        // style: TextStyle(color: Colors.blue),))
+                        // )
+                  
+                  
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
             Bottombar(iccolor: iccolor)
