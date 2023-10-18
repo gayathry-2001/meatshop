@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/recipes/recipes.dart';
-// import 'package:meatshopproj/recipes/recipes.dart';
 import 'package:meatshopproj/recipes/singlerecipes.dart';
-
-
-import '../lists.dart';
 import '../modals/recipesmodal.dart';
 
 class Recipesgrid extends StatelessWidget {

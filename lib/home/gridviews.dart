@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/home/homepage.dart';
 import 'package:meatshopproj/product/product.dart';
-
-import '../lists.dart';
 import '../modals/homemodal.dart';
 
 class Grids extends StatelessWidget {

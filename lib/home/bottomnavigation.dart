@@ -22,7 +22,7 @@ class _AnimBottomnavigationState extends State<AnimBottomnavigation> {
   GlobalKey navkey = GlobalKey();
 
   int indexnum=0;
-  List tabwid = [  const Homepage(),
+  List tabwid = [   const Homepage(),
                    const Cat(),
                    const Settings()];
   @override

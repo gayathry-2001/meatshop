@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
 // import 'package:meatshopproj/singleproduct/singleproduct.dart';
 // import 'package:meatshopproj/recipes/recipes.dart';

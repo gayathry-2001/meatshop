@@ -6,14 +6,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/api.dart';
 import 'package:meatshopproj/home/carouselindicator.dart';
-import 'package:meatshopproj/home/drawer.dart';
-import 'package:meatshopproj/home/gridviews.dart';
-import 'package:meatshopproj/modals/productmodal.dart';
+
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modals/homemodal.dart';
+import 'gridviews.dart';
 
 // import 'bottomnavigation.dart';
 class Homepage extends StatefulWidget {
@@ -22,24 +21,27 @@ class Homepage extends StatefulWidget {
   @override
   State<Homepage> createState() => _HomepageState();
 }
-ValueNotifier<List<Categories>> categoryNotifier = ValueNotifier([]);
+ ValueNotifier<List<Categories>> categoryNotifier = ValueNotifier([]);
 ValueNotifier<List<Banners>> bannerNotifier = ValueNotifier([]);
 
 
 class _HomepageState extends State<Homepage> {
-  var id ="";
 
+  var id ="";
+  // late Future <List<Categories>> items;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     homeUser();
+    
   }
 
   var bottomNavIndex=0;
 
   @override
   Widget build(BuildContext context) {
+    getval(); 
     
    
    
@@ -89,19 +91,20 @@ class _HomepageState extends State<Homepage> {
     
   }
   void homeUser() async{
-    final userid ="565";
+  
     const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
     
     
      final formdata = FormData.fromMap({
-     'user_id': userid,
+     'user_id': id,
      'key': key
      });
      final result = await Api().homeUserApi(formdata);
-      print("###############$userid");
+      print("$id");
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
+            saveval2(result.data!.categories!);
 
          
             categoryNotifier.value.clear();
@@ -111,64 +114,23 @@ class _HomepageState extends State<Homepage> {
                
             // showSuccessmessage();
              print("**********$categoryNotifier");
-          }
-          
-        
-        
-          
-        } else {
-         
-            // categoryNotifier.value.clear();
-        }
-      }
-       
-     
-    
-  }
-  
-  void showErrormessage() {
-    MotionToast.error(
-      title: const Text(
-        'Error',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      description: const Text("message"),
-      position: MotionToastPosition.top,
-      barrierColor: Colors.black.withOpacity(0.3),
-      width: 300,
-      height: 80,
-      dismissable: true,
-    ).show(context);
-
-  }
-  
-  void showSuccessmessage() {
-     MotionToast.success(
-      title: const Text(
-        'Success',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      description: Text("message"),
-      position: MotionToastPosition.top,
-      barrierColor: Colors.black.withOpacity(0.3),
-      width: 300,
-      height: 80,
-      dismissable: true,
-    ).show(context);
+          } 
+        } 
+      } 
   }
  
   void getval() async{
     SharedPreferences share = await SharedPreferences.getInstance();
-    id = share.getString("userid")!;
+    setState(() {
+       id = share.getString("userid")!;
+    });
+    
+    
   }
 
-  void saveval2() async{
+  void saveval2(catid) async{
     SharedPreferences share = await SharedPreferences.getInstance();
-    share.setString("product",Categories().categoryId.toString());
+    share.setString("product",catid);
     
   }
 }

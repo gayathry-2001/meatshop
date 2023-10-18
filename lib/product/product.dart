@@ -1,16 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/modals/productmodal.dart';
-// import 'package:meatshopproj/home/gridviews.dart';
 import 'package:meatshopproj/product/productgrids.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../api.dart';
-import '../modals/homemodal.dart';
 
-// ignore: must_be_immutable
+
 class Product extends StatefulWidget {
-   Product({super.key});
+   const Product({super.key});
 
   @override
   State<Product> createState() => _ProductState();
@@ -18,12 +15,15 @@ class Product extends StatefulWidget {
 }
 ValueNotifier<List<Productdata>> productNotifier = ValueNotifier([]);
 class _ProductState extends State<Product> {
+
    
    var id ="";
+   var uid ="";
 
   
   @override
   Widget build(BuildContext context) {
+    getval();
     productUser();
     return  Scaffold(
       appBar: AppBar(
@@ -54,13 +54,13 @@ class _ProductState extends State<Product> {
     );
   }
   void productUser() async{
-    const userid ="565";
+    // const userid ="565";
     const catid="66";
     const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
     
     
      final formdata = FormData.fromMap({
-     'user_id': userid,
+     'user_id': uid,
      'category_id':catid,
      'key': key
      });
@@ -72,8 +72,8 @@ class _ProductState extends State<Product> {
             productNotifier.value.clear();
             productNotifier.value.addAll(result.data!);
             
-            showSuccessmessage();
-            //  print("**********$productNotifier");
+           
+             print("**********$uid");
           }
           
         
@@ -81,7 +81,7 @@ class _ProductState extends State<Product> {
           
         } else {
          
-          showErrormessage();
+        
         }
       }
        
@@ -90,10 +90,12 @@ class _ProductState extends State<Product> {
   }
   void getval() async{
     SharedPreferences share = await SharedPreferences.getInstance();
-    id = share.getString("product")!;
+    setState(() {
+      id = share.getString("product").toString();
+      uid = share.getString("userid").toString();
+    });
+    
   }
   
-  void showSuccessmessage() {}
-  
-  void showErrormessage() {}
+ 
 }

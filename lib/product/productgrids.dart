@@ -7,9 +7,14 @@ import 'package:meatshopproj/singleproduct/singleproduct.dart';
 // import '../lists.dart';
 
 
-class Productgrids extends StatelessWidget {
+class Productgrids extends StatefulWidget {
   const Productgrids({super.key});
-  
+
+  @override
+  State<Productgrids> createState() => _ProductgridsState();
+}
+
+class _ProductgridsState extends State<Productgrids> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

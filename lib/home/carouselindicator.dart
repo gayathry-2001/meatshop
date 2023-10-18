@@ -71,9 +71,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                  _controller.animateToPage(item.key);
               },
               child: Container(
-                width: 12,
-                height: 12,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                width: 11,
+                height: 10,
+                margin: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: current == index ? Colors.blue : Colors.grey,

@@ -143,6 +143,10 @@ class _LoginpageState extends State<Loginpage> {
                                      
                                     ),
                                     onPressed: () async{
+                                      setState(() {
+                                      
+                                      });
+                                      
                                      
                                      loginUser();
                                  
@@ -214,11 +218,7 @@ class _LoginpageState extends State<Loginpage> {
    
   }
 
-    void saveval() async {
-    SharedPreferences share = await SharedPreferences.getInstance();
-    share.setString("userid",Loginmodal().userId!);
-   
-  }
+    
   void loginUser() async{
     final mail = mailcontrol.text;
     final passwrd = passcontrol.text;
@@ -239,12 +239,12 @@ class _LoginpageState extends State<Loginpage> {
 
       if (result != null) {
         if (result.status == "success") {
-        
+           
           showSuccessmessage(result.message!);
+          saveval(Loginmodal().userId);
+         
           next();
-          // Navigator.push(context, MaterialPageRoute(builder: (context){
-          //   return const  HomeScreen();
-          // }));
+         
         } else {
          
           showErrormessage(result.message!);
@@ -290,9 +290,16 @@ class _LoginpageState extends State<Loginpage> {
     ).show(context);
   }
   Future <void> next() async{
-   return Future.delayed(Duration(seconds: 5),(){
-    Navigator.push(context, MaterialPageRoute(builder: ((context) => AnimBottomnavigation())));
+   return Future.delayed(const Duration(seconds: 5),(){
+    Navigator.push(context, MaterialPageRoute(builder: ((context) => const AnimBottomnavigation())));
    });
+  }
+
+   void saveval(userId) async {
+          
+           SharedPreferences share = await SharedPreferences.getInstance();
+           share.setString("userid",userId);
+   
   }
 
 }
