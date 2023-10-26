@@ -10,18 +10,33 @@ class SingleRecipes extends StatefulWidget {
 }
 
 class _SingleRecipesState extends State<SingleRecipes> {
-  var singlereciname;
-  var singlerecical ;
-  var singlerecitym;
-  var singlereciingre;
-  var singlerecicook;
-  var singlereciimg;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+
+
+
+    setState(() {
+       singleReciUser();
+    });
+//  singleReciUser();
+   
+  }
+  String? singlereciname;
+  String? singlerecical ;
+   String? singlerecitym;
+   String? singlereciingre;
+   String? singlerecicook;
+  String? singlereciimg;
   @override
   Widget build(BuildContext context) {
-    singleReciUser();
+   
     return  Scaffold
     (
-      appBar: AppBar(title: Text(singlereciname)),
+      appBar: AppBar(title: Text(singlereciname.toString())),
       body: SafeArea(child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +56,7 @@ class _SingleRecipesState extends State<SingleRecipes> {
                 ),
               ),
 
-                child: Image.network(singlereciimg,fit: BoxFit.fill,
+                child: Image.network(singlereciimg.toString(),fit: BoxFit.fill,
                 ),
                 
               ),
@@ -54,7 +69,7 @@ class _SingleRecipesState extends State<SingleRecipes> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(singlereciname,style:const TextStyle(color: Colors.white,
+                    Text(singlereciname.toString(),style:const TextStyle(color: Colors.white,
                     fontSize: 25,
                     shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 50),]),
                     ),
@@ -66,7 +81,7 @@ class _SingleRecipesState extends State<SingleRecipes> {
                           
                          const Icon(Icons.timer_outlined,color: Colors.white,
                          shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),
-                           Text(singlerecitym,style: 
+                           Text(singlerecitym.toString(),style: 
                            const TextStyle(color: Colors.white,
                            fontSize: 16,
                            shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),),
@@ -76,7 +91,7 @@ class _SingleRecipesState extends State<SingleRecipes> {
                               child:  Icon(Icons.local_fire_department_outlined,color: Colors.white,
                               shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),
                             ),
-                            Text(singlerecical,
+                            Text(singlerecical.toString(),
                             style: const TextStyle(color: Colors.white,
                             fontSize: 16,
                             shadows: [Shadow(color: Color.fromARGB(255, 0, 0, 0),blurRadius: 30),]),),
@@ -117,7 +132,7 @@ class _SingleRecipesState extends State<SingleRecipes> {
                           TextStyle(fontWeight: FontWeight.bold,
                           fontSize: 18),),
                         ),
-                              Text(singlereciingre),
+                              Text(singlereciingre.toString()),
                             ],
                           )),
                          
@@ -143,7 +158,7 @@ class _SingleRecipesState extends State<SingleRecipes> {
                         child: Text("How to cook",style: 
                         TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                       ),
-                              Text(singlerecicook),
+                              Text(singlerecicook.toString()),
                             ],
                           ),
                         ),
@@ -171,12 +186,15 @@ class _SingleRecipesState extends State<SingleRecipes> {
     if (result != null){
       if(result.status == "success"){
         if(result.data != null){
-          singlereciname = result.data?.recipie!.name!;
+          setState(() {
+             singlereciname = result.data?.recipie!.name!;
           singlereciingre = result.data?.recipie!.ingredients!;
           singlerecicook = result.data?.recipie!.description!;
           singlerecitym = result.data?.recipie!.time!;
           singlerecical = result.data?.recipie!.cals!;
           singlereciimg = result.data?.recipie!.image!;
+          });
+         
         }
       }
     }

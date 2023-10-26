@@ -15,14 +15,16 @@ class Product extends StatefulWidget {
 }
 ValueNotifier<List<Productdata>> productNotifier = ValueNotifier([]);
 class _ProductState extends State<Product> {
+  
 
-   
+   var prodid;
    var id ="";
    var uid ="";
 
   
   @override
   Widget build(BuildContext context) {
+    
     getval();
     productUser();
     return  Scaffold(
@@ -69,11 +71,12 @@ class _ProductState extends State<Product> {
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
+          
             productNotifier.value.clear();
             productNotifier.value.addAll(result.data!);
             
            
-             print("**********$uid");
+             print("*********tytyth*$uid");
           }
           
         
@@ -90,9 +93,13 @@ class _ProductState extends State<Product> {
   }
   void getval() async{
     SharedPreferences share = await SharedPreferences.getInstance();
+       uid = share.getString("userid")!;
+  }
+  void setval() async{
+    SharedPreferences share = await SharedPreferences.getInstance();
     setState(() {
-      id = share.getString("product").toString();
-      uid = share.getString("userid").toString();
+     share.setString("product",prodid);
+     
     });
     
   }

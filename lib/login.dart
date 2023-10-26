@@ -18,6 +18,8 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  
+  var user_Id ;
   final val1 = "";
    bool passwordVisible=false; 
   final mailcontrol = TextEditingController();
@@ -26,6 +28,7 @@ class _LoginpageState extends State<Loginpage> {
    @override
     void initState(){
       super.initState();
+      // saveval();
       passwordVisible=true;
     }    
   @override
@@ -143,9 +146,7 @@ class _LoginpageState extends State<Loginpage> {
                                      
                                     ),
                                     onPressed: () async{
-                                      setState(() {
                                       
-                                      });
                                       
                                      
                                      loginUser();
@@ -241,7 +242,12 @@ class _LoginpageState extends State<Loginpage> {
         if (result.status == "success") {
            
           showSuccessmessage(result.message!);
-          saveval(Loginmodal().userId);
+         
+         user_Id = result.userId;
+         print("******************$user_Id");
+         saveval();
+         
+       
          
           next();
          
@@ -295,11 +301,11 @@ class _LoginpageState extends State<Loginpage> {
    });
   }
 
-   void saveval(userId) async {
+   void saveval() async {
           
            SharedPreferences share = await SharedPreferences.getInstance();
-           share.setString("userid",userId);
-   
+           share.setString("userid",user_Id.toString());
+     print("*****************797*$user_Id");
   }
 
 }

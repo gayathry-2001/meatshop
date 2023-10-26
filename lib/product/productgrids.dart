@@ -35,11 +35,12 @@ class _ProductgridsState extends State<Productgrids> {
                       mainAxisSpacing: 2), 
                       itemBuilder: (context, index) {
                         final product = productNotifier.value[index];
+                        final id = product.productId;
                         return InkWell(
                           onTap: () {
                             Navigator.push(context,
                              MaterialPageRoute(builder: (context){
-                              return const Singleproduct();
+                              return  Singleproduct(id: product.productId,);
                              }));
                           },
                           child: Container(

@@ -6,9 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meatshopproj/api.dart';
 import 'package:meatshopproj/home/carouselindicator.dart';
-
-import 'package:motion_toast/motion_toast.dart';
-import 'package:motion_toast/resources/arrays.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modals/homemodal.dart';
@@ -21,19 +18,21 @@ class Homepage extends StatefulWidget {
   @override
   State<Homepage> createState() => _HomepageState();
 }
- ValueNotifier<List<Categories>> categoryNotifier = ValueNotifier([]);
+ValueNotifier<List<Categories>> categoryNotifier = ValueNotifier([]);
 ValueNotifier<List<Banners>> bannerNotifier = ValueNotifier([]);
 
-
 class _HomepageState extends State<Homepage> {
-
+ 
   var id ="";
   // late Future <List<Categories>> items;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    homeUser();
+    setState(() {
+       homeUser();
+    });
+   
     
   }
 
@@ -42,9 +41,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     getval(); 
-    
-   
-   
+ 
     WidgetsBinding.instance.addPostFrameCallback((_) async{
     
     });
@@ -100,15 +97,19 @@ class _HomepageState extends State<Homepage> {
      'key': key
      });
      final result = await Api().homeUserApi(formdata);
-      print("$id");
+      print("fghgfh$id");
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
-            saveval2(result.data!.categories!);
-
-         
-            categoryNotifier.value.clear();
+            // saveval2(result.data!.categories!);
+              categoryNotifier.value.clear();
+           setState(() {
+            
             categoryNotifier.value.addAll(result.data!.categories!);
+            print("sdfghk");
+           });
+         
+           
             
               
                
@@ -121,18 +122,14 @@ class _HomepageState extends State<Homepage> {
  
   void getval() async{
     SharedPreferences share = await SharedPreferences.getInstance();
-    setState(() {
        id = share.getString("userid")!;
-    });
-    
-    
   }
 
-  void saveval2(catid) async{
-    SharedPreferences share = await SharedPreferences.getInstance();
-    share.setString("product",catid);
+  // void saveval2(catid) async{
+  //   SharedPreferences share = await SharedPreferences.getInstance();
+  //   share.setString("product",catid);
     
-  }
+  // }
 }
 
 

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:meatshopproj/modals/singleproductmodal.dart';
 
 import '../api.dart';
@@ -7,7 +8,8 @@ import 'Bottombar.dart';
 import 'singleproductgrid.dart';
 
 class Singleproduct extends StatefulWidget {  
-  const Singleproduct({super.key});
+  final id;
+  const Singleproduct({super.key, this.id});
 
   @override
   State<Singleproduct> createState() => _SingleproductState();
@@ -15,24 +17,30 @@ class Singleproduct extends StatefulWidget {
 // ValueNotifier<List<Singledata>> singleproNotifier = ValueNotifier([]);
 
 class _SingleproductState extends State<Singleproduct> {
+   var uid ="";
+   
+     String? singleproname;
+  String? singleproimg ;
+  String? singlprodesc;
+  String? singleproprice;
+
   @override
   void initState() {
 
     super.initState();
-    singleproUser();
+    setState(() {
+        singleproUser();
+    });
+  
   }
   
   var kgcount = 0;
   var gmcount = 0;
   var dropdownvalue = "Select";
-  var singleproname="";
-  var singleproimg ="";
-  var singlprodesc="";
-  var singleproprice="";
-  get kg => kgcount;
+ get kg => kgcount;
   get gm => gmcount;
   get pricereq => "$kg.$gm";
-  get t => int.parse(singleproprice);
+  get t => int.parse(singleproprice.toString());
   get p => double.parse(pricereq);
   get total => p * t;
   
@@ -45,11 +53,12 @@ class _SingleproductState extends State<Singleproduct> {
    var iccolor= const Color.fromARGB(255, 246, 242, 242); 
   @override
   Widget build(BuildContext context) {
-    
+  
+      getval();
     return  Scaffold(
       
       appBar: AppBar(
-        title:  Text(singleproname),
+        title:  Text(singleproname.toString()),
         actions: [
           IconButton(onPressed: (){
     
@@ -84,7 +93,7 @@ class _SingleproductState extends State<Singleproduct> {
                       ]),
                      child: Padding(
                        padding: const EdgeInsets.only(top: 10,left: 20,right: 20),
-                       child:  Text(singleproname,
+                       child:  Text(singleproname.toString(),
                            maxLines: 2,),
                      ),
                    ),
@@ -283,7 +292,7 @@ class _SingleproductState extends State<Singleproduct> {
                                     ),),
                                      Padding(
                                      padding: const EdgeInsets.only(top: 20,bottom: 10),
-                                     child:  Text("$pricereq x $singleproprice = $total",
+                                     child:  Text("$pricereq x $singleproprice = total",
                                      style: const TextStyle(
                                       fontWeight: FontWeight.bold
                                      ),),
@@ -314,7 +323,7 @@ class _SingleproductState extends State<Singleproduct> {
                                  padding: EdgeInsets.only(bottom: 20),
                                  child: Text("Description",style: TextStyle(fontWeight: FontWeight.bold),),
                                ),
-                               Text(singlprodesc)
+                               Text(singlprodesc.toString())
                               ],
                             ),
                           ),
@@ -359,26 +368,37 @@ class _SingleproductState extends State<Singleproduct> {
     );
   }
   void singleproUser() async{
-     const prodid = "213";
-     const userid ="565";
+    //  const prodid = "213";
+    //  const userid ="565";
      const key = "koFCpCMzm8hhn9ULj0BnUzZkpqM3rg9Mqdii3FwPRjBwZFQWriIJYgB5jjOhNIyasSl4RrmCFLW3tHDRtI39viQbYEP7nEkYvba2wstThYWjvkndZq0zaXJaWjuqeZo8vR3MMHa6OhBDKsFPmWOlIM4H1TgB1fudQndGKzUPg8YhAoaAoCxZ562zjbQdPO73ZkwyPV7iOIkyH11ZLAN42a5dgLH22Rs1VasEWBKdfkqMLPfDbLQpF9Ofqah4fqwc";
      
      final formData = FormData.fromMap({
-       'product_id' : prodid,
-       'user_id' : userid,
+       'product_id' : widget.id,
+       'user_id' : uid,
        'key': key
      });
      final result = await Api().singleproductUserApi(formData);
      
      if (result != null){
       if(result.status == "success"){
+        
+        setState(() {
+          print("$uid");
+          print("${widget.id}");
+       
          singleproname = result.data.name;
          singleproimg = result.data.images[0];
          singleproprice = result.data.wholePrice;
          singlprodesc = result.data.description;
-         
+        }); 
       }
      }
   }
+   void getval() async{
+    SharedPreferences share = await SharedPreferences.getInstance();
+       uid = share.getString("userid")!;
+      //  pid = share.getString("product")!;
+  }
+
 }
 
