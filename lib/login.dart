@@ -295,7 +295,7 @@ class _LoginpageState extends State<Loginpage> {
       dismissable: true,
     ).show(context);
   }
-  Future <void> next() async{
+   next() {
    return Future.delayed(const Duration(seconds: 5),(){
     Navigator.push(context, MaterialPageRoute(builder: ((context) => const AnimBottomnavigation())));
    });

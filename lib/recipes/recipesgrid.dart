@@ -29,7 +29,9 @@ class Recipesgrid extends StatelessWidget {
                           onTap: () {
                             Navigator.push(context,
                              MaterialPageRoute(builder: (context){
-                              return const SingleRecipes();
+                              return  SingleRecipes(
+                                id: recipes.id,
+                              );
                              }));
                           },
                           child: Container(

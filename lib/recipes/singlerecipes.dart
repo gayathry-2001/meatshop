@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:meatshopproj/api.dart';
 
 class SingleRecipes extends StatefulWidget {
-  const SingleRecipes({super.key});
+  final id;
+  const SingleRecipes({super.key, this.id});
 
   @override
   State<SingleRecipes> createState() => _SingleRecipesState();
@@ -177,7 +178,7 @@ class _SingleRecipesState extends State<SingleRecipes> {
     
     final formdata =FormData.fromMap(
       {
-       'recipe_id': recipeid,
+       'recipe_id': widget.id,
        'user_id':userid,
        'key':key
       }

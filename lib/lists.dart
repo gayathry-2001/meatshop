@@ -31,7 +31,7 @@ final List name = [
 
 final List settingvals = [
   "My Profile","My orders","Wallet","Refer & Earn","About Us","FAQ",
-  "Help","Contact Us","Log Out"
+  "Help","Contact Us"
 
    
 ];
