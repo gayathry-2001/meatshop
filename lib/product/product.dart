@@ -125,9 +125,11 @@ class _ProductState extends State<Product> {
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
-          
-            productNotifier.value.clear();
+          setState(() {
+              productNotifier.value.clear();
             productNotifier.value.addAll(result.data!);
+          });
+          
             
            
              print("*********tytyth*$uid");
