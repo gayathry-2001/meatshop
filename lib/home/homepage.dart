@@ -9,6 +9,7 @@ import 'package:meatshopproj/home/carouselindicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modals/homemodal.dart';
+import '../product/product.dart';
 import 'gridviews.dart';
 
 // import 'bottomnavigation.dart';
@@ -51,7 +52,7 @@ class _HomepageState extends State<Homepage> {
       body: SafeArea(
         child: Container(
           color: const Color.fromARGB(155, 239, 236, 236),
-          child:const SingleChildScrollView(
+          child: SingleChildScrollView(
             // physics: ScrollPhysics(),
             child: Column(
                 
@@ -74,7 +75,47 @@ class _HomepageState extends State<Homepage> {
                   padding:  EdgeInsets.only(left: 20,right: 20,top: 10),
                   child: LimitedBox(
                     maxHeight: 450,
-                    child: Grids()
+                    child: ValueListenableBuilder(
+      valueListenable: categoryNotifier,
+       builder: (context, List<Categories> newproduct, child) {
+         return
+
+         GridView.builder(
+                     physics:const ScrollPhysics(),
+                    itemCount: newproduct.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 2,
+                      mainAxisSpacing: 2), 
+                      itemBuilder: (context, index) {
+                         final product = categoryNotifier.value[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                             MaterialPageRoute(builder: (context){
+                              return  Product();
+                             }));
+                          },
+                          child: Container(
+                            color: const Color.fromARGB(255, 253, 253, 253),
+                                                 
+                            child: Padding(
+                              padding: const EdgeInsets.only(left:10.0,right: 10,top: 10),
+                              child: Column(
+                                children: [
+                                   Image.network(product.image.toString()),
+                                   Text(product.name.toString()),
+                                   
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }, );
+    
+
+       },)
                   ),
                 ),            
               ],
@@ -101,13 +142,16 @@ class _HomepageState extends State<Homepage> {
       if (result != null) {
         if (result.status == "success") {
           if(result.data != null){
-            // saveval2(result.data!.categories!);
-              categoryNotifier.value.clear();
-           setState(() {
+            setState(() {
+               categoryNotifier.value.clear();
+         
             
             categoryNotifier.value.addAll(result.data!.categories!);
+            });
+            // saveval2(result.data!.categories!);
+             
             print("sdfghk");
-           });
+        
          
            
             

@@ -5,6 +5,7 @@ import 'package:meatshopproj/recipes/recipesgrid.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modals/recipesmodal.dart';
+import 'singlerecipes.dart';
 
 class Recipes extends StatefulWidget {
   const Recipes({super.key});
@@ -38,9 +39,63 @@ class _RecipesState extends State<Recipes> {
         child: Container(
           height: double.infinity,
           color: const Color.fromARGB(255, 239, 236, 236),
-          child: const Padding(
+          child:  Padding(
             padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-            child: Recipesgrid(),
+            child: ValueListenableBuilder(
+      valueListenable: recipenotifier, 
+      builder:(context, List<Recipedata> recipe, child) {
+          return  GridView.builder(
+                    itemCount: recipe.length,
+                    gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
+                      // childAspectRatio: (itemHeight/itemWidth),
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 2,
+                      mainAxisSpacing: 2), 
+                      itemBuilder: (context, index) {
+                        final recipes = recipenotifier.value[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                             MaterialPageRoute(builder: (context){
+                              return  SingleRecipes(
+                                id: recipes.id,
+                              );
+                             }));
+                          },
+                          child: Container(
+                            color: Colors.white,
+                            
+                            // decoration: BoxDecoration(
+                            //   image: DecorationImage(image: AssetImage(
+                            //     gridimg[index]
+                            //   ),fit: BoxFit.fill)
+                            // ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
+                              child: Column(
+                                
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                 SizedBox(
+                                  height: 130,
+                                  width: 200,
+                                  child: Image.network(recipes.image.toString(),
+                                  fit: BoxFit.fill,)),
+                                   Text(recipes.name.toString(),maxLines: 1,),
+                                 
+                                   Text("Cooking:${recipes.time.toString()}",
+                                   style: TextStyle(
+                                    fontSize: 12
+                                   ),)
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }, );
+        
+      },),
           ),
         )),
     );
@@ -59,8 +114,11 @@ class _RecipesState extends State<Recipes> {
       if(result.status == "success"){
         if(result.data!= null){
           print("dfgdfgd$uid");
-          recipenotifier.value.clear();
+          setState(() {
+             recipenotifier.value.clear();
           recipenotifier.value.addAll(result.data!);
+          });
+         
         }
       }
     }

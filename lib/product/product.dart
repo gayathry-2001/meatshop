@@ -4,6 +4,7 @@ import 'package:meatshopproj/modals/productmodal.dart';
 import 'package:meatshopproj/product/productgrids.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../api.dart';
+import '../singleproduct/singleproduct.dart';
 
 
 class Product extends StatefulWidget {
@@ -15,6 +16,7 @@ class Product extends StatefulWidget {
 }
 ValueNotifier<List<Productdata>> productNotifier = ValueNotifier([]);
 class _ProductState extends State<Product> {
+   
   
 
    var prodid;
@@ -24,7 +26,10 @@ class _ProductState extends State<Product> {
   
   @override
   Widget build(BuildContext context) {
-    
+    var size = MediaQuery.of(context).size;
+
+   final double itemHeight = (size.height - kToolbarHeight) / 2.5;
+    final double itemWidth = size.width*1.2;
     getval();
     productUser();
     return  Scaffold(
@@ -50,9 +55,58 @@ class _ProductState extends State<Product> {
         child:Container
       ( color: const Color.fromARGB(255, 239, 236, 236),
         height: double.infinity,
-        child:const Padding(
+        child: Padding(
           padding: EdgeInsets.only(left: 20,right: 20,top: 30),
-          child: Productgrids())) )
+          child:  ValueListenableBuilder(
+      valueListenable: productNotifier, 
+      builder: (context, List<Productdata> newproduct, child) {
+        return GridView.builder(
+          
+                    itemCount: newproduct.length,
+                    gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio:(itemHeight/itemWidth) ,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 2,
+                      mainAxisSpacing: 2), 
+                      itemBuilder: (context, index) {
+                        final product = productNotifier.value[index];
+                        
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                             MaterialPageRoute(builder: (context){
+                              return  Singleproduct(id: product.productId,);
+                             }));
+                          },
+                          child: Container(
+                            
+                            // decoration: BoxDecoration(
+                            //   image: DecorationImage(image: AssetImage(
+                            //     gridimg[index]
+                            //   ),fit: BoxFit.fill)
+                            // ),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 125,
+                                  
+                                    child: Image.network(product.image.toString(),fit: BoxFit.fill,)),
+                                   SizedBox(
+                                    height: 100,
+                                    child: Text(product.name.toString())
+                                    )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }, );
+      },)
+          
+          )) )
     );
   }
   void productUser() async{
